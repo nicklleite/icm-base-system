@@ -1,0 +1,46 @@
+.gc_validation_messages {
+    border-radius: 5px;
+    text-align: left;
+    padding: 5px 10px;
+    position: relative;
+
+    // Tipos de alertas
+    // &[data-type="alert"] {}
+
+    // Contexto das mensagens
+    &.error {
+        background-color: #fee;
+        border: 1px solid #fcc;
+        color: $error;
+    }
+    &.success {
+        background-color: #e6fce5;
+        border: 1px solid #8df08b;
+        color: #158c12;
+    }
+
+    // Elementos da mensagem
+    .gc_validation_messages__title {
+        font-weight: bold;
+
+        .gc_validation_messages__code {
+            font-style: italic;
+            font-size: .75rem;
+        }
+    }
+    .gc_validation_messages__message {
+        font-size: .9rem;
+
+        // Elementos genéricos de formatação da mensagem, caso haja.
+        p {
+            margin-bottom: 0;
+        }
+    }
+
+    // Mensagem sem título
+    &.no-title {
+        .gc_validation_messages__title {
+            margin: 0;
+        }
+    }
+}

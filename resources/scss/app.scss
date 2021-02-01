@@ -1,0 +1,16 @@
+// Configurações
+@import "settings/variables";
+@import "settings/reset";
+
+// Templates
+@import "templates/default";
+@import "templates/dashboard";
+
+// Componentes
+@import "components/gc_breadcrumb";
+@import "components/gc_data_table";
+@import "components/gc_filters";
+@import "components/gc_validation_messages";
+
+// Pages
+@import "pages/gc_page_form";

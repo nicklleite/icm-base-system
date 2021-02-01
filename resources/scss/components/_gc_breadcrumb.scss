@@ -1,0 +1,35 @@
+.gc_breadcrumb {
+
+    ul {
+        margin: 0;
+
+        li {
+            padding: 0;
+            font-size: .75rem;
+
+            &::after {
+                font-family: "Font Awesome 5 Free";
+                display: inline-block;
+                font-style: normal;
+                font-variant: normal;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+                margin-left: 10px;
+                font-weight: 900;
+                font-size: .5rem;
+                color: #bbb;
+                content: "\f054";
+            }
+
+            &:last-child {
+                &::after {
+                    content: "";
+                }
+            }
+
+
+            a {
+            }
+        }
+    }
+}

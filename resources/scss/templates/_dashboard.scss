@@ -1,0 +1,46 @@
+.cms-main {
+    padding-top: 75px;
+
+    #mainNavigation {
+        padding: 0 1rem;
+        
+        // Logo do menu de navegação
+        .nepuga-logo {
+            width: 80px;
+        }
+
+        .nav-item {
+            .nav-link {
+                font-size: 1rem;
+            }
+        }
+
+        .nav-item.dropdown {
+            .navbar__user-info {
+                padding: .25rem 1rem;
+
+                h6 {
+                    margin: 0;
+                    font-size: .75rem;
+                    font-weight: bold;
+                }
+            }
+
+            .dropdown-header {
+                padding: .25rem 1rem;
+                font-size: .9rem;
+                font-size: .75rem;
+                font-weight: bold;
+            }
+
+            a.dropdown-item {
+                padding: .25rem 1rem;
+                font-size: .9rem;
+            }
+        }
+    }
+
+    // [name=main-content] {
+    //     background-image: url('../images/logos/logo_nepuga.svg');
+    // }
+}
