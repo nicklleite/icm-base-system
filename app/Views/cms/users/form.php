@@ -2,7 +2,7 @@
     
     <header>
         <h1>Usuários</h1>
-        <div class="gc_breadcrumb">
+        <div class="icm_breadcrumb">
             <ul class="list-inline">
                 <li class="list-inline-item">
                     <a href="<?= base_url(route_to('cms.dashboard')) ?>">Dashboard</a>
@@ -15,11 +15,11 @@
         </div>
     </header>
 
-    <div class="gc_form_wrapper mt-3">
+    <div class="icm_form_wrapper mt-3">
         <div class="row">
             <div class="col-lg-8">
-                <?= form_open($action, ['class' => 'gc_form', 'name' => 'form_users']) ?>
-                    <h4 class="gc_form_title mb-3 pb-2">Dados do Usuário</h4>
+                <?= form_open($action, ['class' => 'icm_form', 'name' => 'form_users']) ?>
+                    <h4 class="icm_form_title mb-3 pb-2">Dados do Usuário</h4>
                     <div class="form-group">
                         <input type="text" name="fullname" id="fullname" class="form-control" placeholder="Nome Completo" value="<?= $fullname ?>">
                     </div>
@@ -31,7 +31,7 @@
                             <input type="text" name="email" id="email" class="form-control" placeholder="Email" value="<?= $email ?>">
                         </div>
                     </div>
-                    <h4 class="gc_form_title mt-4 mb-2 pb-2">Permissões de Acesso</h4>
+                    <h4 class="icm_form_title mt-4 mb-2 pb-2">Permissões de Acesso</h4>
                     <div class="form-row">
                         <?php foreach ($pages_for_permission as $row) : ?>
                             <div class="col-lg-2">

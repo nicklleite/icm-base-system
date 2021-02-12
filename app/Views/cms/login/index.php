@@ -1,4 +1,4 @@
-<div class="form-wrapper" name="gc_form_login">
+<div class="form-wrapper" name="icm_form_login">
     <div class="form-header">
         <h1></h1>
         <em><small></small></em>
@@ -6,12 +6,12 @@
 
     <div class="divider"></div>
 
-    <div class="gc_validation_messages error d-none mb-3" data-type="alert">
-        <button type="button" class="gc_validation_messages__close close" aria-label="Close">
+    <div class="icm_validation_messages error d-none mb-3" data-type="alert">
+        <button type="button" class="icm_validation_messages__close close" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
-        <h5 class="gc_validation_messages__title"><small class="gc_validation_messages__code"></small></h5>
-        <span class="gc_validation_messages__message"></span>
+        <h5 class="icm_validation_messages__title"><small class="icm_validation_messages__code"></small></h5>
+        <span class="icm_validation_messages__message"></span>
     </div>
 
     <div class="form-body">

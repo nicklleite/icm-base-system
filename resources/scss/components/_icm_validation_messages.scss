@@ -1,4 +1,4 @@
-.gc_validation_messages {
+.icm_validation_messages {
     border-radius: 5px;
     text-align: left;
     padding: 5px 10px;
@@ -20,15 +20,15 @@
     }
 
     // Elementos da mensagem
-    .gc_validation_messages__title {
+    .icm_validation_messages__title {
         font-weight: bold;
 
-        .gc_validation_messages__code {
+        .icm_validation_messages__code {
             font-style: italic;
             font-size: .75rem;
         }
     }
-    .gc_validation_messages__message {
+    .icm_validation_messages__message {
         font-size: .9rem;
 
         // Elementos genéricos de formatação da mensagem, caso haja.
@@ -39,7 +39,7 @@
 
     // Mensagem sem título
     &.no-title {
-        .gc_validation_messages__title {
+        .icm_validation_messages__title {
             margin: 0;
         }
     }

@@ -1,20 +1,20 @@
 'use strict';
 
-const gc_validation_messages = document.querySelector('.gc_validation_messages');
+const icm_validation_messages = document.querySelector('.icm_validation_messages');
 
-if (gc_validation_messages != null) {
+if (icm_validation_messages != null) {
     
-    const gc_validation_messages__close = gc_validation_messages.querySelector(".gc_validation_messages__close"),
-        gc_validation_messages__title = gc_validation_messages.querySelector(".gc_validation_messages__title"),
-        gc_validation_messages__message = gc_validation_messages.querySelector(".gc_validation_messages__message");
+    const icm_validation_messages__close = icm_validation_messages.querySelector(".icm_validation_messages__close"),
+        icm_validation_messages__title = icm_validation_messages.querySelector(".icm_validation_messages__title"),
+        icm_validation_messages__message = icm_validation_messages.querySelector(".icm_validation_messages__message");
 
     // Botão "Fechar"
-    gc_validation_messages__close.addEventListener('click', function(e) {
+    icm_validation_messages__close.addEventListener('click', function(e) {
         e.preventDefault();
 
-        gc_validation_messages.classList.add('d-none');
-        gc_validation_messages__title.innerHTML = "";
-        gc_validation_messages__message.textContent = "";
+        icm_validation_messages.classList.add('d-none');
+        icm_validation_messages__title.innerHTML = "";
+        icm_validation_messages__message.textContent = "";
     });
 
 }

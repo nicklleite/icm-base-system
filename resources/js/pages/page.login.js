@@ -1,16 +1,16 @@
 'use strict';
 
-const gc_form_login = document.querySelector("[name=gc_form_login]");
+const icm_form_login = document.querySelector("[name=icm_form_login]");
 
-if (gc_form_login != null) {
-    var login__form = gc_form_login.querySelector('.form-login'),
+if (icm_form_login != null) {
+    var login__form = icm_form_login.querySelector('.form-login'),
         login__form__action_button = login__form.querySelector('#btn_login'),
         login__form__action_button_admin = login__form.querySelector("#btn_login_admin"),
         login__form__token = login__form.querySelector('[name=csrf_token]'),
         login__form__refresh = login__form.querySelector('[name=refresh]'),
         login__form__redirect = login__form.querySelector('[name=redirect]'),
         login__form__action = login__form.getAttribute('action'),
-        gc_validation_messages = gc_form_login.querySelector('.gc_validation_messages'),
+        gc_validation_messages = icm_form_login.querySelector('.gc_validation_messages'),
         gc_validation_messages__title = gc_validation_messages.querySelector(".gc_validation_messages__title"),
         gc_validation_messages__message = gc_validation_messages.querySelector(".gc_validation_messages__message");
     

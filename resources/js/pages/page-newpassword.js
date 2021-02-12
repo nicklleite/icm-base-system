@@ -1,15 +1,15 @@
 'use strict';
 
-const gc_form_new_password = document.querySelector('[name=gc_form_new_password]');
+const icm_form_new_password = document.querySelector('[name=icm_form_new_password]');
 
-if (gc_form_new_password != null) {
-    var new_password__form = gc_form_new_password.querySelector('.form-newpassword'),
+if (icm_form_new_password != null) {
+    var new_password__form = icm_form_new_password.querySelector('.form-newpassword'),
         new_password__form__action_button = new_password__form.querySelector('#btn_submit'),
         new_password__form__token = new_password__form.querySelector('[name=csrf_token]'),
         new_password__form__refresh = new_password__form.querySelector('[name=refresh]'),
         new_password__form__redirect = new_password__form.querySelector('[name=redirect]'),
         new_password__form__action = new_password__form.getAttribute('action'),
-        gc_validation_messages = gc_form_new_password.querySelector('.gc_validation_messages'),
+        gc_validation_messages = icm_form_new_password.querySelector('.gc_validation_messages'),
         gc_validation_messages__title = gc_validation_messages.querySelector(".gc_validation_messages__title"),
         gc_validation_messages__message = gc_validation_messages.querySelector(".gc_validation_messages__message");
 
