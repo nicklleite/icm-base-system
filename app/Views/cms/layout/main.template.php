@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Gerenciador de Contratos - {title}</title>
+        <title>ICM - {title}</title>
 
         <link rel="stylesheet" href="{base_url}/assets/css/libraries.min.css?v={nocache}">
         <link rel="stylesheet" href="{base_url}/assets/css/styles.min.css?v={nocache}">

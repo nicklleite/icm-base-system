@@ -9,9 +9,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Painel</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contratos</a>
-                </li>
             </ul>
             <ul class="navbar-nav my-2 my-md-0">
                 <li class="nav-item dropdown">

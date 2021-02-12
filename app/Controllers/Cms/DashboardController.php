@@ -2,12 +2,12 @@
 
 namespace App\Controllers\Cms;
 
-use App\Controllers\BaseController;
+use App\Controllers\BaseController as Controller;
 
 use App\Models\PageModel as Page;
 use App\Models\UserModel as User;
 
-class DashboardController extends BaseController {
+class DashboardController extends Controller {
 
     public function index() {
 

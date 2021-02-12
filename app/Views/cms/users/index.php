@@ -31,7 +31,7 @@
         <?= form_open(route_to('cms.users.massupdate'), ['class' => 'gc_filters__mass_update mt-3 d-none']) ?>
             <div class="form-row justify-content-end">
                 <div class="form-group mb-0 col-lg-12">
-                    <small><em>Edição em massa: <i class="far fa-question-circle fa-fw" data-toggle="tooltip" data-placement="bottom" title="Ações que todos os registros selecionados serão afetados."></i></em></small>
+                    <small><em>Edição em massa: <i class="far fa-question-circle fa-fw" data-toggle="tooltip" data-placement="bottom" title="A ação selecionada será aplicada para todos os registros selecionados."></i></em></small>
                     <button class="btn btn-primary btn-sm ml-2 multi-selected-update" name="gc_filters__mass_update__status" data-action="status">Inativar</button>
                     <button class="btn btn-danger btn-sm ml-2 multi-selected-update" name="gc_filters__mass_update__delete" data-action="delete">Excluir</button>
                 </div>
