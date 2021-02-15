@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
+    "@babel/core": "^7.12.16",
+    "@babel/preset-env": "^7.12.16",
     "@babel/preset-es2015": "^7.0.0-beta.53",
     "babel-polyfill": "^6.26.0",
     "gulp": "^4.0.2",
