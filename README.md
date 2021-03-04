@@ -30,6 +30,21 @@ multi purpose system. This doesn't need to be like this.
 I'm looking forward to make the interactions with systems like CRMs or CMSs
 much more easy.
 
+This project is the phase one. I'm looking forward to make it portable to
+others frameworks. Not just PHP frameworks. I've chosen Codeigniter for this
+beginning just because it is an easy framework to setup and i'm very familiar
+with its features. The version 4 is now more well writen and the use of
+namespaces (just like on Laravel) simplifies much of the development.
+
+My goal is to port this system to:
+
+- Laravel
+- Lumen
+
+I want to port this system to JavaScript as well, but i can't say wich
+technologies i will be using. Express.js and Next.js are some of the good
+choices i can think about at this moment.
+
 ## First Steps
 
 Comming soon...
