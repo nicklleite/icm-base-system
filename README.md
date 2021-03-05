@@ -49,7 +49,7 @@ choices i can think about at this moment.
 
 Comming soon...
 
-## Modules
+## Modules (To be removed soon. The CMS folder will be removed.)
 
 I've implemented a generic interface, using bootstrap, just to test the fluxes
 and the CRUD modules.
