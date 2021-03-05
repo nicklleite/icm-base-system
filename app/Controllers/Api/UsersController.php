@@ -20,6 +20,9 @@ class UsersController extends BaseController {
      * @package icm-base-system
      * @method App\Controller\Api\UsersController::create()
      * @return \CodeIgniter\HTTP\ResponseInterface
+     * 
+     * @see https://codeigniter.com/user_guide/incoming/incomingrequest.htm
+     * @see https://codeigniter.com/user_guide/outgoing/response.html
      */
     public function create() {
 
