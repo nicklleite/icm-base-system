@@ -18,7 +18,7 @@ and make it available for the ones who wants to use the system.
 ## Introduction
 
 My intensions with this are very clear. I want to make the information (and
-content) management more, as much as possible, easy, human friendly and with
+content) management more, as much as possible, easy for humans and with
 accordance with the data protection laws.
 
 ## Objectives

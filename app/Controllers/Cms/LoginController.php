@@ -26,56 +26,63 @@ class LoginController extends BaseController {
 		
 		echo $this->parser->setData($data)->render('cms/layout/login.template');
 	}
-	
+
+	/**
+	 * 
+	 */
 	public function auth() {
-		if ($this->request->getMethod() == 'post') {
-
-			// Recupera os dados enviados
-			$username = $this->request->getVar('username');
-			$password = $this->request->getVar('password');
-
-			// Busca pelo usuário
-			$user = new User();
-			$row = $user->login($username);
-			
-			if (!empty($row)) {
-				if (password_verify($password, $row->password)) {
-					// Registrando a session
-					$session = \Config\Services::session();
-					$session->set([
-						'user_id' => $row->id,
-						'fullname' => $row->fullname,
-						'email' => $row->email,
-						'username' => $row->username
-					]);
-		
-					// Registrando log de acesso
-					$this->log->register($row->id, "LOGIN", "Login realizado com sucesso!");
-		
-					return json_encode([
-						'status' => 200,
-						'message' => 'Login realizado com sucesso!'
-					]);
-				} else {
-					return json_encode([
-						'status' => 405,
-						'message' => 'Login/Senha incorretos! Tente novamente mais tarde ou entre em contato com o administrador.'
-					]);
-				}
-			} else {
-				return json_encode([
-					'status' => 404,
-					'message' => 'Usuário não encontrado ou Login/Senha incorretos! Tente novamente mais tarde ou entre em contato com o administrador.'
-				]);
-			}
-
-		} else {
-			return json_encode([
-				'status' => 405,
-				'message' => 'Método não permitido!'
-			]);
-		}
+		echo __FILE__ . ":" . __LINE__ . "<pre>";print_r($this->request);echo "</pre>";die;
 	}
+	
+	// public function auth() {
+	// 	if ($this->request->getMethod() == 'post') {
+
+	// 		// Recupera os dados enviados
+	// 		$username = $this->request->getVar('username');
+	// 		$password = $this->request->getVar('password');
+
+	// 		// Busca pelo usuário
+	// 		$user = new User();
+	// 		$row = $user->login($username);
+			
+	// 		if (!empty($row)) {
+	// 			if (password_verify($password, $row->password)) {
+	// 				// Registrando a session
+	// 				$session = \Config\Services::session();
+	// 				$session->set([
+	// 					'user_id' => $row->id,
+	// 					'fullname' => $row->fullname,
+	// 					'email' => $row->email,
+	// 					'username' => $row->username
+	// 				]);
+		
+	// 				// Registrando log de acesso
+	// 				$this->log->register($row->id, "LOGIN", "Login realizado com sucesso!");
+		
+	// 				return json_encode([
+	// 					'status' => 200,
+	// 					'message' => 'Login realizado com sucesso!'
+	// 				]);
+	// 			} else {
+	// 				return json_encode([
+	// 					'status' => 405,
+	// 					'message' => 'Login/Senha incorretos! Tente novamente mais tarde ou entre em contato com o administrador.'
+	// 				]);
+	// 			}
+	// 		} else {
+	// 			return json_encode([
+	// 				'status' => 404,
+	// 				'message' => 'Usuário não encontrado ou Login/Senha incorretos! Tente novamente mais tarde ou entre em contato com o administrador.'
+	// 			]);
+	// 		}
+
+	// 	} else {
+	// 		return json_encode([
+	// 			'status' => 405,
+	// 			'message' => 'Método não permitido!'
+	// 		]);
+	// 	}
+	// }
 
 	public function forgot_password() {
 		$data = array(

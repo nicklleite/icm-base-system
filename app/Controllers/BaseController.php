@@ -44,6 +44,7 @@ class BaseController extends Controller
 		$this->db = \Config\Database::connect(); // Database
 		$this->session = \Config\Services::session(); // Session
 		$this->request = \Config\Services::request(); // Request
+		$this->response = \Config\Services::response(); // Response
 		$this->parser = \Config\Services::parser(); // View Parser
 		$this->validation =  \Config\Services::validation(); // Form Validation
 		$this->email = \Config\Services::email(); // Email
