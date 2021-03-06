@@ -1,8 +1,9 @@
 # ICM - Information & Content Management
 
-Hey there! Glad you came. My name is Nicholas and this is the ICM (Yeah yeah, I
-know... i'm not good with cool software names). I'm web developer from Ribeirao
-Preto, Sao Paulo, Brazil, South America, Americas, Earth...
+Hey there! Glad you came. My name is Nicholas and I'm full stack web developer
+focusing on Back-End development. I'm from Ribeirão Preto, São Paulo, Brazil,
+South America, Earth... And this is the ICM (Yeah yeah, I
+know... i'm not good with cool software names).
 
 This project is my favorite one, mainly because i've grown a big passion for
 making information management more easy, no matter if you use computers for 2
