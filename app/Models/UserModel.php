@@ -23,8 +23,12 @@ class UserModel extends Model {
         return $result->getResult();
     }
 
-    public function getUser($filter = array(), $query_where_cond = "AND", $return_num_rows = false) {
+    public function getUser($fields = array(), $filter = array(), $query_where_cond = "AND", $return_num_rows = false) {
         $builder = $this->connect();
+
+        if (is_array($fields) && !empty($fields)) {
+            $builder->select($fields);
+        }
 
         if (is_array($filter) && !empty($filter)) {
             foreach ($filter as $k => $v) {
@@ -55,8 +59,19 @@ class UserModel extends Model {
         return $this->db->affectedRows();
     }
 
-    public function createUser() {
-        
+    public function createUser($user) {
+        $builder = $this->connect();
+
+        $user['random_unique_key'] = sha1($user['email']);
+        $user['api_key'] = password_hash(implode(" ", $user), PASSWORD_BCRYPT);
+
+        unset($user['random_unique_key']);
+
+        if ($builder->insert($user)) {
+            return $this->db->insertID();
+        } else {
+            return 0;
+        }
     }
 
     public function updateUsers(array $ids, string $column) {

@@ -9,7 +9,11 @@ use App\Models\UserModel as User;
 class UsersController extends BaseController {
 
     public function index() {
-        echo __FILE__ . ":" . __LINE__ . "<pre>";print_r($this->request);echo "</pre>";die;
+        // echo __FILE__ . ":" . __LINE__ . "<pre>";print_r($this->request->getMethod());echo "</pre>";die;
+
+        $encryption = new \CodeIgniter\Encryption\Encryption();
+        $key = $encryption->createKey(64);
+        echo $key;
     }
 
     /**
@@ -21,19 +25,32 @@ class UsersController extends BaseController {
      * @method App\Controller\Api\UsersController::create()
      * @return \CodeIgniter\HTTP\ResponseInterface
      * 
-     * @see https://codeigniter.com/user_guide/incoming/incomingrequest.htm
+     * @see https://codeigniter.com/user_guide/incoming/incomingrequest.html
      * @see https://codeigniter.com/user_guide/outgoing/response.html
      */
     public function create() {
 
         // Lets create some users, shaw we?!
+
         if ($this->request->hasHeader('Content-Type') && $this->request->getHeaderLine('Content-Type') == "application/json") {
             // echo "Has the header I want!";
 
-            // Mission accomplished!
-            return $this->response->setStatusCode(201)->setJSON([
-                "message" => "User created successfully"
-            ]);
+            // Retrieve the request body
+            $body = $this->request->getJSON(true);
+
+            // Data validation before store it
+            // Magic and stuff...
+            
+            $user = new User();
+            if ($user->createUser($body) > 0) {
+                $new_user = $user->getUser(['api_key', 'fullname', 'email', 'username'], ['id' => $user->createUser($body)]);
+                $new_user->message = "User created successfully";
+
+                // Mission accomplished!
+                return $this->response->setStatusCode(201)->setJSON($new_user);
+            }
+            
+
         } else {
             // echo "Off with ye!";
 
