@@ -39,7 +39,9 @@ class UsersController extends BaseController {
             $body = $this->request->getJSON(true);
 
             // Data validation before store it
-            // Magic and stuff...
+            
+            // Validation: "Email already exists"
+            // Validation: "Valid email"
             
             $user = new User();
             if ($user->createUser($body) > 0) {
