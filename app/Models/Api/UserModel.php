@@ -25,13 +25,16 @@ class UserModel extends Model {
 
     protected $validationRules    = [
         'fullname' => 'required|alpha_numeric_space|min_length[5]',
-        'username' => 'required|alpha_numeric_space|min_length[5]',
+        'username' => 'required|alpha_numeric_space|min_length[5]|is_unique[users.username]',
         'email' => 'required|valid_email|is_unique[users.email]',
     ];
 
     protected $validationMessages = [
         'email' => [
             'is_unique' => 'Sorry. That email has already been taken. Please choose another.'
+        ],
+        'username' => [
+            'is_unique' => 'Sorry. That username has already been taken. Please choose another.'
         ]
     ];
     protected $skipValidation     = false;
