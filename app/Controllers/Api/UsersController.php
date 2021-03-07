@@ -4,18 +4,11 @@ namespace App\Controllers\Api;
 
 use App\Controllers\BaseController;
 
-use App\Models\UserModel as User;
+use App\Entities\Api\User;
+use App\Models\Api\UserModel;
 
 class UsersController extends BaseController {
-
-    public function index() {
-        // echo __FILE__ . ":" . __LINE__ . "<pre>";print_r($this->request->getMethod());echo "</pre>";die;
-
-        $encryption = new \CodeIgniter\Encryption\Encryption();
-        $key = $encryption->createKey(64);
-        echo $key;
-    }
-
+    
     /**
      * Creates a user that can access the API services. The method requires a
      * JSON as the body of request. With it, the user is registred in the DB,
@@ -31,32 +24,33 @@ class UsersController extends BaseController {
     public function create() {
 
         // Lets create some users, shaw we?!
-
         if ($this->request->hasHeader('Content-Type') && $this->request->getHeaderLine('Content-Type') == "application/json") {
-            // echo "Has the header I want!";
 
-            // Retrieve the request body
+            // Retrieve the request body and generates the API key
             $body = $this->request->getJSON(true);
+            $body['random_unique_key'] = sha1($body['email'] . time());
+            $body['api_key'] = password_hash(implode(" ", $body), PASSWORD_BCRYPT);
+
+            unset($body['random_unique_key']);
 
             // Data validation before store it
-            
-            // Validation: "Email already exists"
-            // Validation: "Valid email"
-            
-            $user = new User();
-            if ($user->createUser($body) > 0) {
-                $new_user = $user->getUser(['api_key', 'fullname', 'email', 'username'], ['id' => $user->createUser($body)]);
-                $new_user->message = "User created successfully";
+            $userModel = new UserModel();
 
+            if (!$userModel->save($body)) {
+                /**
+                 * TODO: Make the error messages more human friendly
+                 */
+
+                return $this->response->setStatusCode(400)->setJSON($userModel->errors());
+            } else {
+                $newUser = $userModel->select(['fullname', 'username', 'email', 'api_key', 'created_at as user_since'])->find($userModel->getInsertID());
+                
                 // Mission accomplished!
-                return $this->response->setStatusCode(201)->setJSON($new_user);
+                return $this->response->setStatusCode(201)->setJSON($newUser);
             }
-            
-
         } else {
-            // echo "Off with ye!";
 
-            // Mission failed!
+            // Mission failed! Off with ye!
             return $this->response->setStatusCode(400)->setJSON([
                 "message" => "Something is wrong with your request! Check the information sended and try again later."
             ]);

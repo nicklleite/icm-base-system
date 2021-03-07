@@ -55,7 +55,6 @@ class BaseController extends Controller
 		//--------------------------------------------------------------------
 		$this->log = new \App\Models\LogModel(); // Log
 		$this->page = new \App\Models\PageModel(); // Pages
-		$this->user = new \App\Models\UserModel(); // Pages
 	}
 
 	// Recupera informações do usuário
