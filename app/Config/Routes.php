@@ -21,7 +21,7 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -39,7 +39,11 @@ $routes->setAutoRoute(true);
  * @package icm-base-system
  * @version 1.0
  */
-$routes->resource('users', ['controller' => 'UsersController']);
+$routes->group('users', function($routes) {
+	$routes->get('/', 'UsersController::index');
+	$routes->put('/', 'UsersController::create');
+});
+// $routes->resource('users', ['controller' => 'UsersController']);
 
 /*
  * --------------------------------------------------------------------
