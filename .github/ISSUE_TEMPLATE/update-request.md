@@ -2,7 +2,7 @@
 name: Update request
 about: Suggest and describes an update for one (or more) functionalities
 title: ''
-labels: ''
+labels: update
 assignees: nicklleite
 
 ---
