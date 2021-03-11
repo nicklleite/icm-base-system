@@ -21,7 +21,7 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(false);
+$routes->setAutoRoute(true);
 
 /*
  * --------------------------------------------------------------------
@@ -40,8 +40,11 @@ $routes->setAutoRoute(false);
  * @version 1.0
  */
 $routes->group('users', function($routes) {
-	$routes->get('/', 'UsersController::index');
-	$routes->put('/', 'UsersController::create');
+	$routes->get('', 'UsersController::index');
+	$routes->post('', 'UsersController::create()');
+
+	$routes->match(['put', 'patch'], '(:any)', 'UsersController::update/$1');
+	$routes->delete('(:any)', 'UsersController::delete/$1');
 });
 // $routes->resource('users', ['controller' => 'UsersController']);
 

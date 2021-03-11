@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Api;
+namespace App\Models;
 
 use CodeIgniter\Model;
 
@@ -11,11 +11,11 @@ class UserModel extends Model {
 
     protected $useAutoIncrement = true;
 
-    protected $returnType    = 'App\Entities\Api\User';
+    protected $returnType    = 'App\Entities\User';
     protected $useSoftDeletes = true;
 
     protected $allowedFields = [
-        'fullname', 'email', 'username', 'api_key'
+        'fullname', 'username', 'email', 'key', 'access_token'
     ];
 
     protected $useTimestamps = true;
@@ -23,9 +23,9 @@ class UserModel extends Model {
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
-    protected $validationRules    = [
-        'fullname' => 'required|alpha_numeric_space|min_length[5]',
-        'username' => 'required|alpha_numeric_space|min_length[5]|is_unique[users.username]',
+    protected $validationRules = [
+        'fullname' => 'required|min_length[5]',
+        'username' => 'required|min_length[5]|is_unique[users.username]',
         'email' => 'required|valid_email|is_unique[users.email]',
     ];
 
@@ -37,5 +37,5 @@ class UserModel extends Model {
             'is_unique' => 'Sorry. That username has already been taken. Please choose another.'
         ]
     ];
-    protected $skipValidation     = false;
+    protected $skipValidation = false;
 }

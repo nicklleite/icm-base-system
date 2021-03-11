@@ -2,13 +2,11 @@
 
 namespace App\Controllers;
 
-// use App\Controllers\BaseController;
-
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
 
-use App\Entities\Api\User;
-use App\Models\Api\UserModel;
+use App\Entities\User;
+use App\Models\UserModel;
 
 class UsersController extends ResourceController {
 
@@ -18,7 +16,7 @@ class UsersController extends ResourceController {
      * List all the users
      * 
      * @package icm-base-system
-     * @method App\Controller\Api\UsersController::index
+     * @method App\Controller\UsersController::index
      * @return \CodeIgniter\HTTP\ResponseInterface
      * 
      * @see https://codeigniter.com/user_guide/incoming/incomingrequest.html
@@ -26,7 +24,7 @@ class UsersController extends ResourceController {
      */
     public function index() {
         $userModel = new UserModel();
-        $data = $userModel->findAll();
+        $data = $userModel->select(['key', 'email', 'username', 'fullname', 'created_at as user_since'])->findAll();
 
         if (empty($data)) {
             $data = [
@@ -51,17 +49,17 @@ class UsersController extends ResourceController {
      * @see https://codeigniter.com/user_guide/incoming/incomingrequest.html
      * @see https://codeigniter.com/user_guide/outgoing/response.html
      */
-    public function create() {
+    public function create($any = null) {
 
         // Lets create some users, shaw we?!
         if ($this->request->hasHeader('Content-Type') && $this->request->getHeaderLine('Content-Type') == "application/json") {
 
-            // Retrieve the request body and generates the API key
+            // Retrieve the request body
             $body = $this->request->getJSON(true);
-            $body['random_unique_key'] = sha1($body['email'] . time());
-            $body['api_key'] = password_hash(implode(" ", $body), PASSWORD_BCRYPT);
 
-            unset($body['random_unique_key']);
+            // Generating the User Key and the Access Key
+            $body['key'] = hash('md5', implode(",", $body) . time());
+            $body['access_token'] = hash('sha256', implode(";", $body) . time());
 
             // Data validation before store it
             $userModel = new UserModel();
@@ -73,7 +71,7 @@ class UsersController extends ResourceController {
 
                 return $this->response->setStatusCode(400)->setJSON($userModel->errors());
             } else {
-                $newUser = $userModel->select(['fullname', 'username', 'email', 'api_key', 'created_at as user_since'])->find($userModel->getInsertID());
+                $newUser = $userModel->select(['key', 'email', 'username', 'fullname', 'created_at as user_since'])->find($userModel->getInsertID());
                 
                 // Mission accomplished!
                 return $this->response->setStatusCode(201)->setJSON($newUser);
@@ -85,6 +83,22 @@ class UsersController extends ResourceController {
                 "message" => "Something is wrong with your request! Check the information sended and try again later."
             ]);
         }
+    }
+
+    /**
+     * !! This method requires the API Key from a registred user !!
+     * 
+     * 
+     * 
+     * @package icm-base-system
+     * @method App\Controller\Api\UsersController::create
+     * @return \CodeIgniter\HTTP\ResponseInterface
+     * 
+     * @see https://codeigniter.com/user_guide/incoming/incomingrequest.html
+     * @see https://codeigniter.com/user_guide/outgoing/response.html
+     */
+    public function update($key = null) {
+        echo __FILE__ . ":" . __LINE__ . "<pre>";print_r($key);echo "</pre>";die;
     }
 
 }
