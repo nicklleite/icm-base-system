@@ -79,5 +79,7 @@ country. I had a good help from Google Translate to double check my writings.
 
 ## Thanks to...
 
-This blog post. It helped me to see things from another angle.
-https://mfikri.com/en/blog/codeigniter4-restful-api
+Here some links that helped me to see things from another angle.
+
+- https://restfulapi.net/http-methods/
+- https://mfikri.com/en/blog/codeigniter4-restful-api
