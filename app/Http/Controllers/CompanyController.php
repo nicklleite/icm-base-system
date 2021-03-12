@@ -3,28 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class CompanyController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
+class CompanyController extends Controller {
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Retrieves a paginated list of users.
+     * 
+     * @param Request $request
+     * @return JsonResource
      */
-    public function create()
-    {
-        //
+    public function index(Request $request) {
+        return JsonResource::collection(
+            Company::simplePaginate($request->input('paginate') ?? 15)
+        );
     }
 
     /**
@@ -33,9 +30,35 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+        $validator = Validator::make($request->all(), [
+            "company_name" => "required|string",
+            "trading_name" => "required|string",
+            "employer_identification_number" => "required|string"
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->toArray(), 422);
+        }
+
+        DB::beginTransaction();
+        try {
+            $incommingData = $validator->validate();
+
+            $company = new Company();
+            $company->company_name = $incommingData['company_name'];
+            $company->trading_name = $incommingData['trading_name'];
+            $company->employer_identification_number = $incommingData['employer_identification_number'];
+            $company->save();
+
+            DB::commit();
+        } catch (Exception $ex) {
+            Log::info($ex->getMessage());
+            DB::rollBack();
+            return response()->json($ex->getMessage(), 409);
+        }
+
+        return (new JsonResource($company));
     }
 
     /**

@@ -18,5 +18,6 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::resource('users', App\Http\Controllers\UserController::class);
+Route::resource('companies', App\Http\Controllers\CompanyController::class);
 Route::resource('people', App\Http\Controllers\PersonController::class);
+Route::resource('users', App\Http\Controllers\UserController::class);

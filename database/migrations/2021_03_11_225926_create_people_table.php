@@ -14,6 +14,7 @@ class CreatePeopleTable extends Migration
     public function up() {
         Schema::create('people', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignId('company_id');
             $table->tinyInteger('person_type')->default(1)->comment('1 - Natural person (Brazil: Pessoa Física); 2 - Legal person (Brazil: Pessoa Jurídica)');
             $table->string('first_name');
             $table->string('last_name');

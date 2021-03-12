@@ -32,9 +32,9 @@ class PersonController extends Controller {
      * @return JsonResource
      */
     public function store(Request $request) {
-        // echo __FILE__ . ":" . __LINE__ . "<pre>";print_r($request->all());echo "</pre>";die;
 
         $validator = Validator::make($request->all(), [
+            "company_id" => "required|numeric",
             "person_type" => "required|numeric",
             "first_name" => "required|string",
             "last_name" => "required|string",
@@ -52,6 +52,7 @@ class PersonController extends Controller {
             $incommingData = $validator->validate();
 
             $person = new Person();
+            $person->company_id = $incommingData['company_id'];
             $person->person_type = $incommingData['person_type'];
             $person->first_name = $incommingData['first_name'];
             $person->last_name = $incommingData['last_name'];
@@ -76,20 +77,8 @@ class PersonController extends Controller {
      * @param  \App\Models\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function show(Person $person)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Person  $person
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Person $person)
-    {
-        //
+    public function show(Person $person) {
+        return (new JsonResource($person));
     }
 
     /**
