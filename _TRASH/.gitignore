@@ -133,3 +133,5 @@ vendor/*
 # MISC
 _production
 _production/*
+
+_TRASH

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entities\Api;
+namespace App\Entities;
 
 use CodeIgniter\Entity;
 

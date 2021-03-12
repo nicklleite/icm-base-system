@@ -39,7 +39,14 @@ $routes->setAutoRoute(true);
  * @package icm-base-system
  * @version 1.0
  */
-$routes->resource('users', ['controller' => 'UsersController']);
+$routes->group('users', function($routes) {
+	$routes->get('', 'UsersController::index');
+	$routes->post('', 'UsersController::create()');
+
+	$routes->match(['put', 'patch'], '(:any)', 'UsersController::update/$1');
+	$routes->delete('(:any)', 'UsersController::delete/$1');
+});
+// $routes->resource('users', ['controller' => 'UsersController']);
 
 /*
  * --------------------------------------------------------------------

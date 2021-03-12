@@ -76,3 +76,10 @@ are starting now!
 - Sorry about my english. I write everything on my personal projects in english
 for the sake of practicing and I want to aim opportunities outside my home
 country. I had a good help from Google Translate to double check my writings.
+
+## Thanks to...
+
+Here some links that helped me to see things from another angle.
+
+- https://restfulapi.net/http-methods/
+- https://mfikri.com/en/blog/codeigniter4-restful-api
