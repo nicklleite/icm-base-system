@@ -19,9 +19,28 @@ class CompanyController extends Controller {
      * @return JsonResource
      */
     public function index(Request $request) {
-        return JsonResource::collection(
-            Company::simplePaginate($request->input('paginate') ?? 15)
-        );
+
+        $access_token = $request->input('access_token') ?? "";
+
+        if ($access_token !== "") {
+            $company = Company::where('access_token', $access_token)->first()->toArray();
+
+            if (sizeof($company) == 0) {
+                return response()->json([
+                    'status' => 422,
+                    'message' => "The access token is invalid!"
+                ], 422);
+            } else {
+                return JsonResource::collection(
+                    Company::simplePaginate($request->input('paginate') ?? 15)
+                );
+            }
+        } else {
+            return response()->json([
+                'status' => 422,
+                'message' => "The access token is required"
+            ], 422);
+        }
     }
 
     /**
@@ -34,7 +53,7 @@ class CompanyController extends Controller {
         $validator = Validator::make($request->all(), [
             "company_name" => "required|string",
             "trading_name" => "required|string",
-            "employer_identification_number" => "required|string"
+            "employer_identification_number" => "required|string|unique:companies,employer_identification_number"
         ]);
 
         if ($validator->fails()) {
@@ -46,6 +65,7 @@ class CompanyController extends Controller {
             $incommingData = $validator->validate();
 
             $company = new Company();
+            $company->access_token = md5(implode(";", $incommingData) . time());
             $company->company_name = $incommingData['company_name'];
             $company->trading_name = $incommingData['trading_name'];
             $company->employer_identification_number = $incommingData['employer_identification_number'];

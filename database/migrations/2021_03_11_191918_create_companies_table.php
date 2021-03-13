@@ -14,6 +14,7 @@ class CreateCompaniesTable extends Migration {
     public function up() {
         Schema::create('companies', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('access_token');
             $table->string('company_name')->comment('In Brazil, a.k.a Razão Social.');
             $table->string('trading_name')->comment('In Brazil, a.k.a Nome Fantasia.');
             $table->string('employer_identification_number')->unique()->comment('In Brazil, a.k.a CNPJ.')->nullable();
