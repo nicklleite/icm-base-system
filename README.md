@@ -38,9 +38,10 @@ I want to port this system to JavaScript, but i can't say wich technologies
 i will be using. Express.js and Next.js are some of the good choices i can
 think about right now.
 
-## First Steps
+## Important info
 
-Comming soon...
+- The company management will not be available to the final user. More on this
+should be added later.
 
 ## Modules
 

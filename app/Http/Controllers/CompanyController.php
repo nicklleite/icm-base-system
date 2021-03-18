@@ -20,27 +20,11 @@ class CompanyController extends Controller {
      */
     public function index(Request $request) {
 
-        $access_token = $request->input('access_token') ?? "";
+        $companies = JsonResource::collection(
+            Company::simplePaginate($request->input('paginate') ?? 15)
+        );
 
-        if ($access_token !== "") {
-            $company = Company::where('access_token', $access_token)->first()->toArray();
-
-            if (sizeof($company) == 0) {
-                return response()->json([
-                    'status' => 422,
-                    'message' => "The access token is invalid!"
-                ], 422);
-            } else {
-                return JsonResource::collection(
-                    Company::simplePaginate($request->input('paginate') ?? 15)
-                );
-            }
-        } else {
-            return response()->json([
-                'status' => 422,
-                'message' => "The access token is required"
-            ], 422);
-        }
+        return $companies;
     }
 
     /**
@@ -87,20 +71,8 @@ class CompanyController extends Controller {
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Company $company)
-    {
-        //
+    public function show(Company $company) {
+        return (new JsonResource($company));
     }
 
     /**
@@ -110,9 +82,41 @@ class CompanyController extends Controller {
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
-    {
-        //
+    public function update(Request $request, Company $company) {
+
+        $company_before_update = Company::find($company);
+        echo __FILE__ . ":" . __LINE__ . "<pre>";print_r($company_before_update);echo "</pre>";die;
+
+        $validator = Validator::make($request->all(), [
+            "company_name" => "sometimes|required|string",
+            "trading_name" => "sometimes|required|string",
+            "employer_identification_number" => "sometimes|required|string|unique:companies,employer_identification_number",
+            "status" => "numeric"
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->toArray(), 422);
+        }
+
+        DB::beginTransaction();
+        try {
+            $incommingData = $validator->validate();
+
+            $company = new Company();
+            $company->access_token = md5(implode(";", $incommingData) . time());
+            $company->company_name = $incommingData['company_name'];
+            $company->trading_name = $incommingData['trading_name'];
+            $company->employer_identification_number = $incommingData['employer_identification_number'];
+            $company->save();
+
+            DB::commit();
+        } catch (Exception $ex) {
+            Log::info($ex->getMessage());
+            DB::rollBack();
+            return response()->json($ex->getMessage(), 409);
+        }
+
+        return (new JsonResource($company));
     }
 
     /**
@@ -121,8 +125,6 @@ class CompanyController extends Controller {
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company)
-    {
-        //
+    public function destroy(Company $company) {
     }
 }

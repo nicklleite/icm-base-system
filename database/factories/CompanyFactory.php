@@ -19,10 +19,12 @@ class CompanyFactory extends Factory
      *
      * @return array
      */
-    public function definition()
-    {
+    public function definition() {
         return [
-            //
+            'access_token' => $this->faker->md5(),
+            "company_name" => $this->faker->company(),
+            "trading_name" => $this->faker->company(),
+            "employer_identification_number" => $this->faker->bothify('########0001##'),
         ];
     }
 }
