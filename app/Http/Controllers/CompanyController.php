@@ -20,6 +20,8 @@ class CompanyController extends Controller {
      */
     public function index(Request $request) {
 
+        Company::factory()->count(25)->create();
+
         $companies = JsonResource::collection(
             Company::simplePaginate($request->input('paginate') ?? 15)
         );

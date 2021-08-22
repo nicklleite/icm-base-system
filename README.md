@@ -66,3 +66,7 @@ Here some links that helped me to see things from another angle.
 
 - https://restfulapi.net/http-methods/
 - https://dev.to/seankerwin/laravel-8-rest-api-with-resource-controllers-5bok
+- https://www.tutsmake.com/how-to-remove-public-from-url-in-laravel/
+- https://laravel.com/docs/8.x/database-testing#resetting-the-database-after-each-test
+- https://www.twilio.com/blog/unit-testing-laravel-api-phpunit
+- https://medium.com/swlh/laravel-5-8-testing-with-sqlite-899d0fdd3494
