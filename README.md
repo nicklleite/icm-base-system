@@ -70,3 +70,7 @@ Here some links that helped me to see things from another angle.
 - https://laravel.com/docs/8.x/database-testing#resetting-the-database-after-each-test
 - https://www.twilio.com/blog/unit-testing-laravel-api-phpunit
 - https://medium.com/swlh/laravel-5-8-testing-with-sqlite-899d0fdd3494
+- https://dev.to/fhsinchy/laravel-service-classes-explained-3m7p
+- https://www.itsolutionstuff.com/post/laravel-form-validation-request-class-exampleexample.html
+- https://medium.com/@kamerk22/the-smart-way-to-handle-request-validation-in-laravel-5e8886279271
+- https://github.com/alexeymezenin/laravel-best-practices
