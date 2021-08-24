@@ -13,8 +13,6 @@ class CompanyTest extends TestCase {
 
     /** @test */
     public function testIfCompanyEndpointIsAvailable() {
-        $this->withoutExceptionHandling();
-
         $response = $this->get('/api/v1/companies');
         $response->assertStatus(200);
     }
@@ -22,7 +20,6 @@ class CompanyTest extends TestCase {
     /** @test */
     public function testIfCompaniesListIsEmpty() {
 
-        // Get all comapnies successfully (Paginated)
         $response = $this->getJson('/api/v1/companies');
         $response->assertStatus(200);
 
@@ -49,7 +46,7 @@ class CompanyTest extends TestCase {
     public function testIfAllCompaniesAreListed() {
 
         // Create 25 Companies in the database
-        $companies = Company::factory()->count(25)->create();
+        Company::factory()->count(25)->create();
 
         // Get all Comapnies (Paginated)
         $response = $this->getJson('/api/v1/companies');

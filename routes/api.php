@@ -15,8 +15,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers'], function() {
-    Route::get('companies', 'CompanyController@index');
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+
+Route::group(['namespace' => 'App\Http\Controllers'], function() {
+
+    // Authentication/Register routes
+    Route::group(['prefix' => 'auth'], function() {
+        Route::get('/register', 'AuthController@register');
+    });
+
+    // Public endpoints
+    Route::group(['prefix' => 'v1'], function() {
+        Route::get('companies', 'CompanyController@index');
+    });
+
+    // Private routes
+    Route::group(['middleware' => 'auth:sanctum'], function() {
+
+    });
     // Route::resource('companies', CompanyController::class);
 });
 
