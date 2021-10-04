@@ -9,5 +9,5 @@ use Illuminate\Support\Facades\Artisan;
 use Tests\CreatesApplication;
 
 abstract class TestCase extends BaseTestCase {
-    use CreatesApplication, DatabaseMigrations;
+    use CreatesApplication;
 }

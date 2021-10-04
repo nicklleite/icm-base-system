@@ -17,15 +17,12 @@
         </include>
     </coverage>
     <php>
-        <!-- <env name="APP_ENV" value="testing"/> -->
-        <server name="APP_ENV" value="testing" force="true"/>
-        <server name="BCRYPT_ROUNDS" value="4"/>
-        <server name="CACHE_DRIVER" value="array"/>
-        <server name="DB_CONNECTION" value="sqlite"/>
-        <server name="DB_DATABASE" value=":memory:"/>
-        <server name="MAIL_MAILER" value="array"/>
-        <server name="QUEUE_CONNECTION" value="sync"/>
-        <server name="SESSION_DRIVER" value="array"/>
-        <server name="TELESCOPE_ENABLED" value="false"/>
+        <env name="APP_ENV" value="testing"  force="true"/>
+        <env name="BCRYPT_ROUNDS" value="4" force="true"/>
+        <env name="CACHE_DRIVER" value="array" force="true"/>
+        <env name="MAIL_DRIVER" value="array" force="true"/>
+        <env name="QUEUE_CONNECTION" value="sync" force="true"/>
+        <env name="DB_CONNECTION" value="testing" force="true"/>
+        <env name="SESSION_DRIVER" value="array" force="true"/>
     </php>
 </phpunit>
