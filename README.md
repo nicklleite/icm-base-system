@@ -74,3 +74,4 @@ Here some links that helped me to see things from another angle.
 - https://www.itsolutionstuff.com/post/laravel-form-validation-request-class-exampleexample.html
 - https://medium.com/@kamerk22/the-smart-way-to-handle-request-validation-in-laravel-5e8886279271
 - https://github.com/alexeymezenin/laravel-best-practices
+- https://www.testim.io/blog/unit-testing-best-practices/
