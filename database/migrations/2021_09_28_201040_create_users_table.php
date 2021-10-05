@@ -15,10 +15,10 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->uuid('hash');
-            $table->string('email')->unique();
-            $table->string('username')->unique();
-            $table->string('full_name');
+            $table->uuid('hash')->nullable(false);
+            $table->string('email')->unique()->nullable(false);
+            $table->string('username')->unique()->nullable(false);
+            $table->string('full_name')->nullable(false);
 
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at');
