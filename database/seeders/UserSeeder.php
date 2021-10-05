@@ -17,9 +17,11 @@ class UserSeeder extends Seeder
     {
         \DB::table('users')->insert([
             "hash" => Str::uuid(),
-            "email" => "nicklleite@gmail.com",
-            "username" => "nicklleite",
-            "full_name" => "Nicholas Leite"
+            "email" => "admin@localhost",
+            "username" => "admin",
+            "full_name" => "Administrador",
+            "created_at" => date("Y-m-d H:i:s"),
+            "updated_at" => date("Y-m-d H:i:s"),
         ]);
     }
 }

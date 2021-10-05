@@ -1,9 +1,10 @@
 {
-    "name": "laravel/laravel",
+    "name": "nicklleite/icm-base-system",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "ICM stands for \"Information & Content Management\". A personal project to fulfill a dream of mine.",
     "keywords": [
-        "framework",
+        "information management",
+        "content management",
         "laravel"
     ],
     "license": "MIT",
@@ -49,10 +50,18 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "test": "./vendor/bin/phpunit",
+        "test": [
+            "@composer refresh-test-database",
+            "./vendor/bin/phpunit"
+        ],
+        "refresh-test-database": [
+            "@php artisan migrate:reset --database=testing --env=testing",
+            "@php artisan migrate --database=testing --env=testing --seed"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@composer test"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""

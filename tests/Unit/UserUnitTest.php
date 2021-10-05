@@ -10,25 +10,34 @@ use App\Models\User;
 
 class UserUnitTest extends TestCase
 {
-    public function testCreateNewApiUser()
+    /**
+     * Expects that the default user was created.
+     * 
+     * @package Tests
+     * @subpackage Unit
+     * @author Nicholas Leite <nicklleite@gmail.com>
+     */
+    public function testIfUserTableWereSeeded()
     {
-        // Creates an User
-        $this->seed();
-
         $this->assertDatabaseHas("users", [
-            "email" => "nicklleite@gmail.com"
+            "email" => "admin@localhost"
         ]);
     }
 
-    // public function testRetrieveUserApiById()
-    // {
+    /**
+     * Expects that the default user was soft deleted.
+     * 
+     * @package Tests
+     * @subpackage Unit
+     * @author Nicholas Leite <nicklleite@gmail.com>
+     */
+    public function testSoftDeleteAUser() {
+        $user = User::where("email", "admin@localhost")->firstOrFail();
+        $user->deleted_at = date("Y-m-d H:i:s");
+        $user->update();
 
-    //     $this->assertTrue(true);
-    // }
-
-    // public function testUpdateUserApi()
-    // {
-        
-    //     $this->assertTrue(true);
-    // }
+        $this->assertSoftDeleted("users", [
+            "email" => "admin@localhost"
+        ]);
+    }
 }
