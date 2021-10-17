@@ -2,25 +2,33 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\User;
-use Illuminate\Http\Request;
-
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Resources\UserResource;
+use App\Models\User;
 use App\Services\UserService;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 
-     * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function list(Request $request)
+    public function index()
     {
-        $service = resolve(UserService::class);
+        //
+    }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -29,18 +37,33 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        //
+        $service = resolve(UserService::class);
+        $payload = $request->only(['hash', 'email', 'username', 'full_name']);
+
+        $user = User::find($service->store($payload));
+        return (UserResource::collection($user))->response()->setStatusCode(201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show(User $user)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(User $user)
     {
         //
     }
@@ -49,9 +72,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -59,10 +83,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(User $user)
     {
         //
     }

@@ -50,13 +50,13 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "test": [
-            "@composer refresh-test-database",
-            "./vendor/bin/phpunit"
-        ],
         "refresh-test-database": [
             "@php artisan migrate:reset --database=testing --env=testing",
             "@php artisan migrate --database=testing --env=testing --seed"
+        ],
+        "test": [
+            "@composer refresh-test-database",
+            "@php artisan test"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",

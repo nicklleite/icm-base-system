@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Support\Str;
-
+use DB;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -15,8 +15,8 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('users')->insert([
-            "hash" => Str::uuid(),
+        DB::table('users')->insert([
+            "hash" => (string) Str::uuid(),
             "email" => "admin@localhost",
             "username" => "admin",
             "full_name" => "Administrador",

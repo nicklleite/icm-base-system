@@ -2,42 +2,70 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
-
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
 use App\Models\User;
+use Database\Seeders\UserSeeder;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
+use Tests\TestCase;
 
 class UserUnitTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
-     * Expects that the default user was created.
-     * 
+     * Expects to create ten fake users, using the UserFactory class
+     *
      * @package Tests
      * @subpackage Unit
      * @author Nicholas Leite <nicklleite@gmail.com>
      */
-    public function testIfUserTableWereSeeded()
+    public function testUserFactory()
     {
-        $this->assertDatabaseHas("users", [
-            "email" => "admin@localhost"
-        ]);
+        $users = User::factory()->count(10)->make();
+        $this->assertGreaterThanOrEqual(10, $users->count(), "");
     }
 
     /**
-     * Expects that the default user was soft deleted.
+     * Expects a successful registration of a new user
      * 
      * @package Tests
      * @subpackage Unit
      * @author Nicholas Leite <nicklleite@gmail.com>
      */
-    public function testSoftDeleteAUser() {
-        $user = User::where("email", "admin@localhost")->firstOrFail();
-        $user->deleted_at = date("Y-m-d H:i:s");
-        $user->update();
+    public function testNewUserRegistration()
+    {
+        $request = $this->post('/api/users', [
+            "hash" => (string) Str::uuid(),
+            "email" => "nicholas@email.com",
+            "username" => "nicklleite",
+            "full_name" => "Nicholas Leite",
+        ], ["Accept" => "application/json"]);
 
-        $this->assertSoftDeleted("users", [
-            "email" => "admin@localhost"
-        ]);
+        $request->assertStatus(201);
     }
+
+    /**
+     * Expects duplicity errors on "hash" and "email" columns
+     * 
+     * @package Tests
+     * @subpackage Unit
+     * @author Nicholas Leite <nicklleite@gmail.com>
+     */
+    public function testNewUserRegistrationWithDuplicatedEmail()
+    {
+        $this->seed(UserSeeder::class);
+
+        $user = User::first();
+
+        $request = $this->post('/api/users', [
+            "hash" => $user->hash,
+            "email" => "admin@localhost",
+            "username" => "nicklleite",
+            "full_name" => "Nicholas Leite",
+        ], ["Accept" => "application/json"]);
+        
+        $request->assertStatus(422);
+        $request->assertJsonValidationErrors(['hash', 'email']);
+    }
+
 }

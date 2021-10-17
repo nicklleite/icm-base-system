@@ -9,12 +9,12 @@ This project is my favorite one, mainly because i've grown a big passion for
 making information management more easy, no matter if you use computers for 2
 days or have a CS degree on your wall.
 
-I'm dedicating my free time between jobs on the development of a web system
-that can store all kinds of information and keep it safe. Thats is one of the
-reasons that i'm not implementing a GUI. I think this project could be more
-flexible and work just like a bunch of services and micro services. The GUI
-will be a future project inside this one, where i make some theme standard
-and make it available for the ones who wants to use the system.
+I'm dedicating my free time on the development of a web system that can store
+all kinds of information and keep it safe. Thats is one of the reasons that i'm
+not implementing a GUI. I think this project could be more flexible and work
+just like a bunch of services and micro services. The GUI will be a future
+project inside this one, where i make some theme standard and make it available
+for the ones who wants to use the system.
 
 ## Introduction
 
