@@ -2,12 +2,15 @@
 
 namespace App\Services;
 
+use App\Models\User;
 use App\Repositories\UserRepository;
 
 class UserService
 {
-
-    protected $userRepository;
+    /**
+     * @var UserRepository $userRepository
+     */
+    protected UserRepository $userRepository;
 
     public function __construct(UserRepository $userRepository)
     {
@@ -15,12 +18,21 @@ class UserService
     }
 
     /**
-     * @param Array $payload
-     * @return void
+     * @param array $payload
+     * @return User
      */
-    public function store(array $payload)
+    public function store(array $payload): User
     {
         return $this->userRepository->store($payload);
+    }
+
+    /**
+     * @param array $payload
+     * @return User
+     */
+    public function update(array $payload): User
+    {
+        return $this->userRepository->update($payload);
     }
 
 }

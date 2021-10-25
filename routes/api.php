@@ -16,4 +16,6 @@ use App\Http\Controllers\Api\UserController;
 |
 */
 
-Route::resource('users', UserController::class);
+Route::group(['prefix' => 'v1', 'as' => 'api.'], function() {
+    Route::resource('users', UserController::class);
+});
