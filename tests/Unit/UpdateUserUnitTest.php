@@ -2,7 +2,6 @@
 
 use App\Models\User;
 use Database\Seeders\UserSeeder;
-use Illuminate\Support\Str;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -12,23 +11,23 @@ it('expects the user to be updated', function() {
     $this->seed(UserSeeder::class);
     $user = User::first();
 
-    $response = $this->patch(route("api.users.update", ["user" => $user]), [
-        "full_name" => "Nicholas Lopes Leite",
+    $request = $this->patch(route("api.users.update", ["user" => $user->id]), [
+        "full_name" => "Nicholas Lopes Leite"
     ], ["Accept" => "application/json"]);
 
-    $response->assertStatus(204);
+    $request->assertStatus(200)->assertJsonStructure(["data" => ["hash", "email", "username", "full_name"]]);
 });
 
 it('expects an error on trying to update the user with duplicated information', function () {
     $this->seed(UserSeeder::class);
     $user = User::first();
 
-    $response = $this->patch(route("api.users.update", ["user" => $user]), [
+    $request = $this->patch(route("api.users.update", ["user" => $user->id]), [
         "hash" => $user->hash,
         "email" => $user->email,
         "username" => $user->username,
-        "full_name" => "Nicholas Lopes Leite",
+        "full_name" => "Nicholas Lopes Leite"
     ], ["Accept" => "application/json"]);
 
-    $response->assertStatus(422)->assertJsonValidationErrors(['hash', 'email', 'username']);
+    $request->assertStatus(422)->assertJsonValidationErrors(['hash', 'email', 'username']);
 });

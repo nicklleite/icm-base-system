@@ -27,12 +27,13 @@ class UserService
     }
 
     /**
+     * @param int $id
      * @param array $payload
      * @return User
      */
-    public function update(array $payload): User
+    public function update(int $id, array $payload): User
     {
-        return $this->userRepository->update($payload);
+        return $this->userRepository->update($id, $payload);
     }
 
 }

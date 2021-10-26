@@ -13,6 +13,10 @@ class User extends Eloquent
 {
     use HasFactory;
 
+    protected $table = 'users';
+
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'hash', 'email', 'username', 'full_name'
     ];
