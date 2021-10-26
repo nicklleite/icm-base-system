@@ -9,8 +9,8 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -19,19 +19,21 @@ class UserController extends Controller
      *
      * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        return response()->json([], 200);
+        return response()->json([
+            "hash" => Str::uuid()
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return JsonResponse
      */
-    public function create()
+    public function create(): JsonResponse
     {
-        //
+        return response()->json([]);
     }
 
     /**
@@ -55,9 +57,9 @@ class UserController extends Controller
      * @param  User  $user
      * @return JsonResponse
      */
-    public function show(User $user)
+    public function show(User $user): JsonResponse
     {
-        return response()->json($user, 200);
+        return response()->json($user);
     }
 
     /**
@@ -68,33 +70,33 @@ class UserController extends Controller
      */
     public function edit(User $user): JsonResponse
     {
-        return response()->json($user, 200);
+        return response()->json($user);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  UpdateUserRequest  $request
-     * @param  User  $user
+     * @param  $user
      * @return JsonResponse
      */
-    public function update(UpdateUserRequest $request, User $user): JsonResponse
+    public function update(UpdateUserRequest $request, $user): JsonResponse
     {
         $service = resolve(UserService::class);
-        $payload = $request->only(['full_name']);
+        $payload = $request->all();
 
-        $user = $service->update($payload);
-        return (new UserResource($user))->response()->setStatusCode(204);
+        $user = $service->update($user, $payload);
+        return (new UserResource($user))->response()->setStatusCode(200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param User $user
      * @return Response
      */
-    public function destroy(User $user)
-    {
-        //
-    }
+//    public function destroy(User $user)
+//    {
+//        //
+//    }
 }

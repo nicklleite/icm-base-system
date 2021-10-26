@@ -28,12 +28,12 @@ class UserRepository
         return $this->user;
     }
 
-    public function update(array $payload): User
+    public function update(int $id, array $payload): User
     {
-        $this->user->fill($payload);
-        $this->user->update();
+        $user = $this->user->findOrFail($id);
+        $user->update($payload);
 
-        return $this->user;
+        return $user;
     }
 
 }
