@@ -4,12 +4,9 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\Model;
 
-/**
- * @mixin Eloquent
- */
-class User extends Eloquent
+class User extends Model
 {
     use HasFactory;
 

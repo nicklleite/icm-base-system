@@ -17,6 +17,15 @@ class UserRepository
     }
 
     /**
+     * @param int $id
+     * @return User
+     */
+    public function getById(int $id): User
+    {
+        return $this->user->findOrFail($id);
+    }
+
+    /**
      * @param array $payload
      * @return User
      */

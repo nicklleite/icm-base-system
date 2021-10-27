@@ -18,6 +18,15 @@ class UserService
     }
 
     /**
+     * @param int $user
+     * @return User
+     */
+    public function get(int $user): User
+    {
+        return $this->userRepository->getById($user);
+    }
+
+    /**
      * @param array $payload
      * @return User
      */

@@ -65,22 +65,25 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  User  $user
+     * @param  $user
      * @return JsonResponse
      */
-    public function edit(User $user): JsonResponse
+    public function edit($user): JsonResponse
     {
-        return response()->json($user);
+        $service = resolve(UserService::class);
+        $user = $service->get($user);
+
+        return (new UserResource($user))->response()->setStatusCode(200);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  UpdateUserRequest  $request
-     * @param  $user
+     * @param  int $user
      * @return JsonResponse
      */
-    public function update(UpdateUserRequest $request, $user): JsonResponse
+    public function update(UpdateUserRequest $request, int $user): JsonResponse
     {
         $service = resolve(UserService::class);
         $payload = $request->all();
