@@ -17,5 +17,6 @@ use App\Http\Controllers\Api\UserController;
 */
 
 Route::group(['prefix' => 'v1', 'as' => 'api.'], function() {
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class)->except(['edit']);
+    Route::get("users/edit/{user}", [UserController::class, 'edit'])->name('users.edit');
 });

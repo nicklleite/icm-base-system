@@ -2,10 +2,17 @@
 
 use App\Models\User;
 use Database\Seeders\UserSeeder;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-uses(TestCase::class, RefreshDatabase::class);
+uses(RefreshDatabase::class);
+
+it("expects a successful load of the edit form and the user to be returned", function() {
+    $this->seed(UserSeeder::class);
+    $user = User::first();
+
+    $request = $this->get(route('api.users.edit', ["user" => $user->id]), ["Accept" => "application/json"]);
+    $request->assertStatus(200)->assertJsonStructure(["data" => ["hash", "email", "username", "full_name"]]);
+});
 
 it('expects the user to be updated', function() {
     $this->seed(UserSeeder::class);

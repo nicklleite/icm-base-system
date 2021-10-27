@@ -3,10 +3,9 @@
 use App\Models\User;
 use Database\Seeders\UserSeeder;
 use Illuminate\Support\Str;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-uses(TestCase::class, RefreshDatabase::class);
+uses(RefreshDatabase::class);
 
 it("expects to successfully visit the create form page", function() {
     $request = $this->get('api/v1/users/create');
