@@ -24,7 +24,6 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            "hash" => "sometimes|string|unique:users,hash",
             "email" => "sometimes|email|unique:users,email",
             "username" => "sometimes|string|min:4|unique:users,username",
             "full_name" => "required|string|min:5",

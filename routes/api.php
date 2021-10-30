@@ -1,9 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +16,10 @@ use App\Http\Controllers\Api\UserController;
 */
 
 Route::group(['prefix' => 'v1', 'as' => 'api.'], function() {
-    Route::resource('users', UserController::class)->except(['edit']);
-    Route::get("users/edit/{user}", [UserController::class, 'edit'])->name('users.edit');
+    Route::post('authenticate', [AuthController::class, 'authenticate'])->name('login.authenticate');
+
+    Route::middleware('auth:sanctum')->group(function() {
+        Route::resource('users', UserController::class)->except(['edit']);
+        Route::get("users/edit/{user}", [UserController::class, 'edit'])->name('users.edit');
+    });
 });

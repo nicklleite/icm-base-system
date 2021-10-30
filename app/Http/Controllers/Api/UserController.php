@@ -11,6 +11,7 @@ use App\Services\UserService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\Response as HttpStatusCode;
 
 class UserController extends Controller
 {
@@ -45,10 +46,10 @@ class UserController extends Controller
     public function store(StoreUserRequest $request): JsonResponse
     {
         $service = resolve(UserService::class);
-        $payload = $request->only(['hash', 'email', 'username', 'full_name']);
+        $payload = $request->only(['email', 'username', 'password', 'full_name']);
 
         $user = $service->store($payload);
-        return (new UserResource($user))->response()->setStatusCode(201);
+        return (new UserResource($user))->response()->setStatusCode(HttpStatusCode::HTTP_CREATED);
     }
 
     /**
@@ -73,7 +74,7 @@ class UserController extends Controller
         $service = resolve(UserService::class);
         $user = $service->get($user);
 
-        return (new UserResource($user))->response()->setStatusCode(200);
+        return (new UserResource($user))->response()->setStatusCode(HttpStatusCode::HTTP_OK);
     }
 
     /**
@@ -89,7 +90,7 @@ class UserController extends Controller
         $payload = $request->all();
 
         $user = $service->update($user, $payload);
-        return (new UserResource($user))->response()->setStatusCode(200);
+        return (new UserResource($user))->response()->setStatusCode(HttpStatusCode::HTTP_OK);
     }
 
     /**

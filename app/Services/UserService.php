@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Repositories\UserRepository;
+use Illuminate\Support\Str;
 
 class UserService
 {
@@ -32,6 +33,7 @@ class UserService
      */
     public function store(array $payload): User
     {
+        $payload['hash'] = (string) Str::uuid();
         return $this->userRepository->store($payload);
     }
 
