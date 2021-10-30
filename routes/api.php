@@ -18,8 +18,8 @@ use App\Http\Controllers\Api\AuthController;
 Route::group(['prefix' => 'v1', 'as' => 'api.'], function() {
     Route::post('authenticate', [AuthController::class, 'authenticate'])->name('login.authenticate');
 
-    Route::middleware('auth:sanctum')->group(function() {
-        Route::resource('users', UserController::class)->except(['edit']);
-        Route::get("users/edit/{user}", [UserController::class, 'edit'])->name('users.edit');
-    });
+    Route::resource('users', UserController::class)->except(['edit']);
+    Route::get("users/edit/{user}", [UserController::class, 'edit'])->name('users.edit');
+//    Route::middleware('auth:sanctum')->group(function() {
+//    });
 });
