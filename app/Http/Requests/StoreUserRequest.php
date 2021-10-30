@@ -24,10 +24,15 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            "hash" => "required|string|unique:users,hash",
             "email" => "required|email|unique:users,email",
             "username" => "required|string|min:4|unique:users,username",
+            "password" => "required|string|min:8|max:100",
             "full_name" => "required|string|min:5",
         ];
+    }
+
+    public function withValidation($validator)
+    {
+
     }
 }

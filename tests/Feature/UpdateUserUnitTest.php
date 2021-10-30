@@ -30,11 +30,10 @@ it('expects an error on trying to update the user with duplicated information', 
     $user = User::first();
 
     $request = $this->patch(route("api.users.update", ["user" => $user->id]), [
-        "hash" => $user->hash,
         "email" => $user->email,
         "username" => $user->username,
         "full_name" => "Nicholas Lopes Leite"
     ], ["Accept" => "application/json"]);
 
-    $request->assertStatus(422)->assertJsonValidationErrors(['hash', 'email', 'username']);
+    $request->assertStatus(422)->assertJsonValidationErrors(['email', 'username']);
 });
