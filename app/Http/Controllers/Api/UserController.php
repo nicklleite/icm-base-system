@@ -22,9 +22,10 @@ class UserController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json([
-            "hash" => Str::uuid()
-        ]);
+        $service = resolve(UserService::class);
+        $users = $service->list(isPaginated: true);
+
+        return response()->json($users, 200);
     }
 
     /**

@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Repositories\UserRepository;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class UserService
@@ -16,6 +18,17 @@ class UserService
     public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
+    }
+
+    /**
+     * @param bool $isPaginated
+     * @param int $perPage
+     *
+     * @return Collection|LengthAwarePaginator
+     */
+    public function list(bool $isPaginated = false, int $perPage = 10): Collection|LengthAwarePaginator
+    {
+        return $this->userRepository->getAll(isPaginated: $isPaginated, perPage: $perPage);
     }
 
     /**
