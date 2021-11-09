@@ -2,24 +2,21 @@
 
 use App\Models\User;
 use Database\Seeders\UserSeeder;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response as HttpStatusCode;
 
 uses(RefreshDatabase::class);
 
-beforeEach(function() {
+beforeEach(function () {
     $this->seed(UserSeeder::class);
 });
 
-it("expects a successful registration of a new user", function() {
-    $login = $this->post(route('api.login.authenticate'), [
-        "email" => "admin@localhost",
-        "password" => "102040"
-    ], ['Accept' => "application/json"]);
+it("expects a successful registration of a new user", function () {
+    $login = performLogin();
     $login->assertStatus(HttpStatusCode::HTTP_OK);
 
-    $request = $this->post('/api/v1/users', [
+    $request = $this->post(route('api.users.store'), [
         "email" => "nicholas@email.com",
         "username" => "nicklleite",
         "password" => Hash::make('102040'),
@@ -29,16 +26,12 @@ it("expects a successful registration of a new user", function() {
     $request->assertStatus(HttpStatusCode::HTTP_CREATED)->assertJsonStructure(["data" => ["hash", "email", "username", "full_name"]]);
 });
 
-it("expects duplicity errors on \"email\" and \"username\" columns", function() {
-    $login = $this->post(route('api.login.authenticate'), [
-        "email" => "admin@localhost",
-        "password" => "102040"
-    ], ['Accept' => "application/json"]);
-
+it("expects duplicity errors on \"email\" and \"username\" columns", function () {
+    $login = performLogin();
     $login->assertStatus(HttpStatusCode::HTTP_OK);
 
     $user = User::first();
-    $request = $this->post('/api/v1/users', [
+    $request = $this->post(route('api.users.store'), [
         "email" => $user->email,
         "username" => $user->username,
         "password" => Hash::make('102040'),

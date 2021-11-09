@@ -12,10 +12,7 @@ beforeEach(function() {
 });
 
 it('expects the user to be updated', function() {
-    $login = $this->post(route('api.login.authenticate'), [
-        "email" => "admin@localhost",
-        "password" => "102040"
-    ], ['Accept' => "application/json"]);
+    $login = performLogin();
     $login->assertStatus(HttpStatusCode::HTTP_OK);
 
     $user = User::first();
@@ -27,10 +24,7 @@ it('expects the user to be updated', function() {
 });
 
 it('expects an error on trying to update the user with duplicated information', function () {
-    $login = $this->post(route('api.login.authenticate'), [
-        "email" => "admin@localhost",
-        "password" => "102040"
-    ], ['Accept' => "application/json"]);
+    $login = performLogin();
     $login->assertStatus(HttpStatusCode::HTTP_OK);
 
     $user = User::first();
