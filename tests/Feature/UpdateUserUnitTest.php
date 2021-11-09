@@ -7,9 +7,11 @@ use Symfony\Component\HttpFoundation\Response as HttpStatusCode;
 
 uses(RefreshDatabase::class);
 
-it('expects the user to be updated', function() {
+beforeEach(function() {
     $this->seed(UserSeeder::class);
+});
 
+it('expects the user to be updated', function() {
     $login = $this->post(route('api.login.authenticate'), [
         "email" => "admin@localhost",
         "password" => "102040"
@@ -25,8 +27,6 @@ it('expects the user to be updated', function() {
 });
 
 it('expects an error on trying to update the user with duplicated information', function () {
-    $this->seed(UserSeeder::class);
-
     $login = $this->post(route('api.login.authenticate'), [
         "email" => "admin@localhost",
         "password" => "102040"
