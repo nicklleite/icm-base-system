@@ -8,9 +8,11 @@ use Symfony\Component\HttpFoundation\Response as HttpStatusCode;
 
 uses(RefreshDatabase::class);
 
-it("expects a successful registration of a new user", function() {
+beforeEach(function() {
     $this->seed(UserSeeder::class);
+});
 
+it("expects a successful registration of a new user", function() {
     $login = $this->post(route('api.login.authenticate'), [
         "email" => "admin@localhost",
         "password" => "102040"
@@ -28,8 +30,6 @@ it("expects a successful registration of a new user", function() {
 });
 
 it("expects duplicity errors on \"email\" and \"username\" columns", function() {
-    $this->seed(UserSeeder::class);
-
     $login = $this->post(route('api.login.authenticate'), [
         "email" => "admin@localhost",
         "password" => "102040"
