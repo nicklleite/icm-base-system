@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\User\StoreUserRequest;
+use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response as HttpStatusCode;
 
 class UserController extends Controller
@@ -26,16 +25,6 @@ class UserController extends Controller
         $users = $service->list(isPaginated: true);
 
         return response()->json($users, 200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return JsonResponse
-     */
-    public function create(): JsonResponse
-    {
-        return response()->json([]);
     }
 
     /**
@@ -56,7 +45,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  User  $user
+     * @param User $user
      * @return JsonResponse
      */
     public function show(User $user): JsonResponse
@@ -65,24 +54,10 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  $user
-     * @return JsonResponse
-     */
-    public function edit($user): JsonResponse
-    {
-        $service = resolve(UserService::class);
-        $user = $service->get($user);
-
-        return (new UserResource($user))->response()->setStatusCode(HttpStatusCode::HTTP_OK);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
-     * @param  UpdateUserRequest  $request
-     * @param  int $user
+     * @param UpdateUserRequest $request
+     * @param int $user
      * @return JsonResponse
      */
     public function update(UpdateUserRequest $request, int $user): JsonResponse
@@ -100,8 +75,8 @@ class UserController extends Controller
      * @param User $user
      * @return Response
      */
-//    public function destroy(User $user)
-//    {
-//        //
-//    }
+    public function destroy(User $user)
+    {
+        //
+    }
 }

@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Testing\TestResponse;
+
 uses(Tests\TestCase::class)->in('Feature');
 
 /*
@@ -39,7 +41,17 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+/**
+ * Performs a login with a test user
+ *
+ * @param string $email
+ * @param string $password
+ * @return TestResponse
+ */
+function performLogin(string $email = "admin@localhost", string $password = "102040"): TestResponse
 {
-    // ..
+    return test()->post(route('api.login.authenticate'), [
+        "email" => $email,
+        "password" => $password
+    ], ['Accept' => "application/json"]);
 }
