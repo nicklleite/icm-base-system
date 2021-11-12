@@ -15,18 +15,22 @@ it('authenticate a user successfully', function () {
     $login->assertStatus(HttpStatusCode::HTTP_OK);
 });
 
-it('tries to authenticate with invalid (or not found) information', function () {
+it('tests the form validation of login: blank fields', function() {
     $login = performLogin("", "");
     $login->assertStatus(HttpStatusCode::HTTP_UNPROCESSABLE_ENTITY)->assertJsonStructure(["errors" => ["email", "password"]]);
+});
 
+it('tests the form validation of login: invalid password', function() {
     $login = performLogin("admin@localhost", "asd");
     $login->assertStatus(HttpStatusCode::HTTP_UNPROCESSABLE_ENTITY)->assertJsonStructure(["errors" => ["password"]]);
+});
 
+it('tests the form validation of login: wrong credentials', function () {
     $login = performLogin("admin@localhost", "123456789");
     $login->assertStatus(HttpStatusCode::HTTP_UNAUTHORIZED)->assertJsonStructure(["message"]);
 });
 
-it('tries to list all users without authenticate', function () {
+it('tries to list users without authenticate', function () {
     $request = $this->get(route('api.users.index'), ['Accept' => "application/json"]);
     $request->assertStatus(HttpStatusCode::HTTP_UNAUTHORIZED);
 });
