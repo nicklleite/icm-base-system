@@ -25,8 +25,7 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             "email" => "sometimes|email|unique:users,email",
-            "username" => "sometimes|string|min:4|unique:users,username",
-            "full_name" => "required|string|min:5",
+            "username" => "sometimes|string|min:4|unique:users,username"
         ];
     }
 }

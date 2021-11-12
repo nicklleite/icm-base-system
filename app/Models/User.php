@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
@@ -18,7 +18,7 @@ class User extends Authenticatable
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'hash', 'email', 'username', 'password', 'full_name'
+        'person_id', 'hash', 'email', 'username', 'password'
     ];
 
     protected $hidden = ['hash', 'password'];
@@ -28,8 +28,8 @@ class User extends Authenticatable
         $this->attributes['password'] = (Hash::needsRehash($value)) ? Hash::make($value) : $value;
     }
 
-    public function person(): HasOne
+    public function person(): BelongsTo
     {
-        return $this->hasOne(Person::class);
+        return $this->belongsTo(Person::class);
     }
 }

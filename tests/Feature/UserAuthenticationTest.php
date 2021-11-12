@@ -1,5 +1,6 @@
 <?php
 
+use Database\Seeders\PersonSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Symfony\Component\HttpFoundation\Response as HttpStatusCode;
@@ -7,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response as HttpStatusCode;
 uses(RefreshDatabase::class);
 
 beforeEach(function () {
+    $this->seed(PersonSeeder::class);
     $this->seed(UserSeeder::class);
 });
 
