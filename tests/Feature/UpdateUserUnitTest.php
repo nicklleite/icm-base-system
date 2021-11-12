@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Database\Seeders\PersonSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Symfony\Component\HttpFoundation\Response as HttpStatusCode;
@@ -8,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response as HttpStatusCode;
 uses(RefreshDatabase::class);
 
 beforeEach(function() {
+    $this->seed(PersonSeeder::class);
     $this->seed(UserSeeder::class);
 });
 
@@ -17,7 +19,7 @@ it('expects the user to be updated', function() {
 
     $user = User::first();
     $request = $this->patch(route("api.users.update", ["user" => $user->id]), [
-        "full_name" => "Nicholas Lopes Leite"
+        "email" => "nicklleite@gmail.com"
     ], ["Accept" => "application/json"]);
 
     $request->assertStatus(HttpStatusCode::HTTP_OK)->assertJsonStructure(["data" => ["hash", "email", "username", "full_name"]]);

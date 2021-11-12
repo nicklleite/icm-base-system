@@ -36,9 +36,8 @@ class UserController extends Controller
     public function store(StoreUserRequest $request): JsonResponse
     {
         $service = resolve(UserService::class);
-        $payload = $request->only(['email', 'username', 'password', 'full_name']);
 
-        $user = $service->store($payload);
+        $user = $service->store($request->all());
         return (new UserResource($user))->response()->setStatusCode(HttpStatusCode::HTTP_CREATED);
     }
 
@@ -63,9 +62,8 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, int $user): JsonResponse
     {
         $service = resolve(UserService::class);
-        $payload = $request->all();
 
-        $user = $service->update($user, $payload);
+        $user = $service->update($user, $request->all());
         return (new UserResource($user))->response()->setStatusCode(HttpStatusCode::HTTP_OK);
     }
 
