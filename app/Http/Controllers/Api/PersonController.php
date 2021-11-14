@@ -6,18 +6,24 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Person\StorePersonRequest;
 use App\Http\Requests\Person\UpdatePersonRequest;
 use App\Models\Person;
+use App\Services\PersonService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response as HttpStatusCode;
 
 class PersonController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        $service = resolve(PersonService::class);
+        $persons = $service->list(isPaginated: true);
+
+        return response()->json($persons, HttpStatusCode::HTTP_OK);
     }
 
     /**
