@@ -26,7 +26,7 @@ class UserRepository
      */
     public function getAll(bool $isPaginated = false, int $perPage = 15): Collection|LengthAwarePaginator
     {
-        $users = User::whereNull('deleted_at');
+        $users = $this->user->whereNull('deleted_at');
 
         if ($isPaginated) {
             return $users->paginate($perPage);
