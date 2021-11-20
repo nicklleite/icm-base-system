@@ -36,8 +36,8 @@ class UserController extends Controller
     public function store(StoreUserRequest $request): JsonResponse
     {
         $service = resolve(UserService::class);
-
         $user = $service->store($request->all());
+
         return (new UserResource($user))->response()->setStatusCode(HttpStatusCode::HTTP_CREATED);
     }
 
