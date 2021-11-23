@@ -27,7 +27,7 @@ it('expects to store a new person on the database', function() {
     $request->assertStatus(HttpStatusCode::HTTP_CREATED);
 });
 
-it('expects to list all persons on the system', function() {
+it('expects a paginated list with all persons on the system', function() {
     $request = $this->get(route('api.persons.index'), ['Accept' => "application/json"]);
     $request->assertStatus(HttpStatusCode::HTTP_OK)->assertJsonStructure([
         'current_page', 'data', 'first_page_url',
