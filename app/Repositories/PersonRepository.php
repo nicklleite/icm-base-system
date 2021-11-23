@@ -34,4 +34,15 @@ class PersonRepository
 
         return $users->get();
     }
+
+    /**
+     *
+     */
+    public function store(array $payload): Person
+    {
+        $this->person->fill($payload);
+        $this->person->save();
+
+        return $this->person;
+    }
 }

@@ -32,7 +32,7 @@ it('tests the form validation of login: wrong credentials', function () {
     $login->assertStatus(HttpStatusCode::HTTP_UNAUTHORIZED)->assertJsonStructure(["message"]);
 });
 
-it('tries to list users without authenticate', function () {
+it('tries to perform an action that requires an authenticated user without authenticate into the system', function () {
     $request = $this->get(route('api.users.index'), ['Accept' => "application/json"]);
     $request->assertStatus(HttpStatusCode::HTTP_UNAUTHORIZED);
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Person\StorePersonRequest;
 use App\Http\Requests\Person\UpdatePersonRequest;
+use App\Http\Resources\PersonResource;
 use App\Models\Person;
 use App\Services\PersonService;
 use Illuminate\Http\JsonResponse;
@@ -30,11 +31,14 @@ class PersonController extends Controller
      * Store a newly created resource in storage.
      *
      * @param StorePersonRequest $request
-     * @return Response
+     * @return JsonResponse
      */
-    public function store(StorePersonRequest $request)
+    public function store(StorePersonRequest $request): JsonResponse
     {
-        //
+        $service = resolve(PersonService::class);
+        $person = $service->store($request->all());
+
+        return (new PersonResource($person))->response()->setStatusCode(HttpStatusCode::HTTP_CREATED);
     }
 
     /**
