@@ -24,7 +24,9 @@ it('expects to store a new person on the database', function() {
         "birth_city" => "Ribeirao Preto"
     ], ['Accept' => "application/json"]);
 
-    $request->assertStatus(HttpStatusCode::HTTP_CREATED);
+    $request->assertStatus(HttpStatusCode::HTTP_CREATED)->assertJsonStructure([
+        'data' => ['full_name', 'social_name', 'birthday', 'is_pwd', 'birth_country', 'birth_city']
+    ]);
 });
 
 it('expects a paginated list with all persons on the system', function() {
