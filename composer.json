@@ -9,12 +9,12 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^8.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "laravel/framework": "^8.12",
-        "laravel/sanctum": "^2.11",
+        "laravel/framework": "^8.75",
+        "laravel/sanctum": "^2.12",
         "laravel/tinker": "^2.5"
     },
     "require-dev": {
@@ -23,12 +23,16 @@
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
+        "pestphp/pest": "^1.20",
         "phpunit/phpunit": "^9.3.3"
     },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     },
     "extra": {
         "laravel": {
@@ -60,8 +64,7 @@
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi",
-            "@composer test"
+            "@php artisan package:discover --ansi"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""

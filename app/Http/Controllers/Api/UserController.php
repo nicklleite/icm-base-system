@@ -3,88 +3,75 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\User\StoreUserRequest;
+use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\UserService;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response as HttpStatusCode;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
-    }
+        $service = resolve(UserService::class);
+        $users = $service->list(isPaginated: true);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json($users, 200);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreUserRequest $request
+     * @return JsonResponse
      */
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request): JsonResponse
     {
         $service = resolve(UserService::class);
-        $payload = $request->only(['hash', 'email', 'username', 'full_name']);
+        $user = $service->store($request->all());
 
-        $user = User::find($service->store($payload));
-        return (UserResource::collection($user))->response()->setStatusCode(201);
+        return (new UserResource($user))->response()->setStatusCode(HttpStatusCode::HTTP_CREATED);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return JsonResponse
      */
-    public function show(User $user)
+    public function show(User $user): JsonResponse
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        //
+        return response()->json($user);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @param UpdateUserRequest $request
+     * @param int $user
+     * @return JsonResponse
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, int $user): JsonResponse
     {
-        //
+        $service = resolve(UserService::class);
+
+        $user = $service->update($user, $request->all());
+        return (new UserResource($user))->response()->setStatusCode(HttpStatusCode::HTTP_OK);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return Response
      */
     public function destroy(User $user)
     {
