@@ -6,6 +6,7 @@ use App\Models\Person;
 use App\Repositories\PersonRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class PersonService
 {
@@ -35,6 +36,7 @@ class PersonService
      */
     public function store(array $payload): Person
     {
+        $payload['hash'] = (string) Str::uuid();
         return $this->personRepository->store($payload);;
     }
 

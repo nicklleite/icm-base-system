@@ -13,7 +13,7 @@ class StoreCompanyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class StoreCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "company_name" => "required|string|min:10",
+            "trading_name" => "required|string|min:10",
+            "registered_number" => "required|string|unique:companies,registered_number|min:14|max:18"
         ];
     }
 }

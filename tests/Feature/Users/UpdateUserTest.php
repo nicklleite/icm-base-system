@@ -1,22 +1,25 @@
 <?php
 
 use App\Models\User;
+use Database\Seeders\CompanySeeder;
 use Database\Seeders\PersonSeeder;
+use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Symfony\Component\HttpFoundation\Response as HttpStatusCode;
 
 uses(RefreshDatabase::class);
 
-beforeEach(function() {
+beforeEach(function () {
+    $this->seed(CompanySeeder::class);
     $this->seed(PersonSeeder::class);
+    $this->seed(RoleSeeder::class);
     $this->seed(UserSeeder::class);
+
+    performLogin();
 });
 
-it('expects the user to be updated', function() {
-    $login = performLogin();
-    $login->assertStatus(HttpStatusCode::HTTP_OK);
-
+it('expects the user to be updated', function () {
     $user = User::first();
     $request = $this->patch(route("api.users.update", ["user" => $user->id]), [
         "email" => "nicklleite@gmail.com"
@@ -26,9 +29,6 @@ it('expects the user to be updated', function() {
 });
 
 it('expects an error on trying to update the user with duplicated information', function () {
-    $login = performLogin();
-    $login->assertStatus(HttpStatusCode::HTTP_OK);
-
     $user = User::first();
     $request = $this->patch(route("api.users.update", ["user" => $user->id]), [
         "email" => $user->email,

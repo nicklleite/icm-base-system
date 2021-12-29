@@ -24,7 +24,6 @@ class AuthController extends Controller
         $user->token = $user->createToken('token')->plainTextToken;
         $cookie = cookie('sanctum', $user->token, 60 * 24);
 
-
         return (new UserResource($user))->response()->setStatusCode(HttpStatusCode::HTTP_OK)->withCookie($cookie);
     }
 

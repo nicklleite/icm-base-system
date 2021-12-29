@@ -15,12 +15,15 @@ class PersonResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'full_name' => $this->full_name,
-            'social_name' => $this->social_name,
-            'birthday' => $this->birthday,
+            "hash" => $this->hash,
+            "company_id" => $this->company_id,
+            "full_name" => $this->full_name,
+            "social_name" => $this->social_name,
+            "birthday" => $this->birthday,
+            "birth_city" => $this->birth_city,
+            "birth_state" => $this->birth_state,
+            "birth_country" => $this->birth_country,
             'is_pwd' => $this->is_pwd,
-            'birth_country' => $this->birth_country,
-            'birth_city' => $this->birth_city,
         ];
     }
 }
