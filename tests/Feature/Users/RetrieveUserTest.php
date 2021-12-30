@@ -18,8 +18,8 @@ beforeEach(function () {
     performLogin();
 });
 
-it('searches for the companies registered on the system', function() {
-    $request = $this->get(route('api.companies.index'), ["Accept" => "application/json"]);
+it('searches for the roles registered on the system', function() {
+    $request = $this->get(route('api.users.index'), ["Accept" => "application/json"]);
 
     $request->assertStatus(HttpStatusCode::HTTP_OK)->assertJsonStructure([
         'current_page', 'data', 'first_page_url',
@@ -28,3 +28,4 @@ it('searches for the companies registered on the system', function() {
         'per_page', 'prev_page_url', 'to', 'total'
     ]);
 });
+

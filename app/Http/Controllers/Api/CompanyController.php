@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCompanyRequest;
-use App\Http\Requests\UpdateCompanyRequest;
+use App\Http\Requests\Company\StoreCompanyRequest;
+use App\Http\Requests\Company\UpdateCompanyRequest;
 use App\Http\Resources\CompanyResource;
 use App\Models\Company;
 use App\Services\CompanyService;
@@ -14,6 +14,12 @@ use Symfony\Component\HttpFoundation\Response as HttpStatusCode;
 
 class CompanyController extends Controller
 {
+
+    public function __construct()
+    {
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -55,7 +61,7 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateCompanyRequest  $request
+     * @param UpdateCompanyRequest $request
      * @param Company $company
      * @return Response
      */
