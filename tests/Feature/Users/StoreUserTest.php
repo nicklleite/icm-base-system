@@ -29,7 +29,7 @@ it("expects a successful registration of a new user", function () {
         "password" => Hash::make('102040'),
     ], ["Accept" => "application/json"]);
 
-    $request->assertStatus(HttpStatusCode::HTTP_CREATED)->assertJsonStructure(["data" => ["hash", "email", "username", "full_name"]]);
+    $request->assertStatus(HttpStatusCode::HTTP_CREATED)->assertJsonStructure(["data" => ["hash", "email", "username"]]);
 });
 
 it("expects duplicity errors on \"email\" and \"username\" columns", function () {

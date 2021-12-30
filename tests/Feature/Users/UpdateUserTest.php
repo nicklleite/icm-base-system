@@ -25,7 +25,7 @@ it('expects the user to be updated', function () {
         "email" => "nicklleite@gmail.com"
     ], ["Accept" => "application/json"]);
 
-    $request->assertStatus(HttpStatusCode::HTTP_OK)->assertJsonStructure(["data" => ["hash", "email", "username", "full_name"]]);
+    $request->assertStatus(HttpStatusCode::HTTP_OK)->assertJsonStructure(["data" => ["hash", "email", "username"]]);
 });
 
 it('expects an error on trying to update the user with duplicated information', function () {
