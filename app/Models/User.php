@@ -21,7 +21,7 @@ class User extends Authenticatable
         'person_id', 'role_id', 'hash', 'email', 'username', 'password'
     ];
 
-    protected $hidden = ['person_id', 'role_id', 'hash', 'password'];
+    protected $hidden = ['id', 'person_id', 'hash', 'password'];
 
     public function setPasswordAttribute($value)
     {

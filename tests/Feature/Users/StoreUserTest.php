@@ -1,10 +1,6 @@
 <?php
 
 use App\Models\User;
-use Database\Seeders\CompanySeeder;
-use Database\Seeders\PersonSeeder;
-use Database\Seeders\RoleSeeder;
-use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response as HttpStatusCode;
@@ -12,10 +8,7 @@ use Symfony\Component\HttpFoundation\Response as HttpStatusCode;
 uses(RefreshDatabase::class);
 
 beforeEach(function () {
-    $this->seed(CompanySeeder::class);
-    $this->seed(PersonSeeder::class);
-    $this->seed(RoleSeeder::class);
-    $this->seed(UserSeeder::class);
+    $this->seed();
 
     performLogin();
 });
@@ -29,7 +22,7 @@ it("expects a successful registration of a new user", function () {
         "password" => Hash::make('102040'),
     ], ["Accept" => "application/json"]);
 
-    $request->assertStatus(HttpStatusCode::HTTP_CREATED)->assertJsonStructure(["data" => ["hash", "email", "username", "full_name"]]);
+    $request->assertStatus(HttpStatusCode::HTTP_CREATED)->assertJsonStructure(["data" => ["hash", "email", "username"]]);
 });
 
 it("expects duplicity errors on \"email\" and \"username\" columns", function () {

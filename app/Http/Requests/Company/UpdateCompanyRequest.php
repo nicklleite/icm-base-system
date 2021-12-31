@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Company;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCompanyRequest extends FormRequest
+class UpdateCompanyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class StoreCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            "company_name" => "required|string|min:10",
-            "trading_name" => "required|string|min:10",
-            "registered_number" => "required|string|unique:companies,registered_number|min:14|max:18"
+            //
         ];
     }
 }

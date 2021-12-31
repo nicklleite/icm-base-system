@@ -11,7 +11,7 @@ beforeEach(function () {
     performLogin();
 });
 
-it('expects to create a new company on the system', function() {
+it('expects to create a new role on the system', function() {
     $request = $this->post(route('api.companies.store'), [
         "company_name" => "Razão Social de Testes",
         "trading_name" => "Nome Fantasia de Testes",

@@ -50,8 +50,10 @@ expect()->extend('toBeOne', function () {
  */
 function performLogin(string $email = "root@localhost", string $password = "102040"): TestResponse
 {
-    return test()->post(route('api.login.authenticate'), [
+    $request = test()->post(route('api.login.authenticate'), [
         "email" => $email,
         "password" => $password
     ], ['Accept' => "application/json"]);
+
+    return $request;
 }

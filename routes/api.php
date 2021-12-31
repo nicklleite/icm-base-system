@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\PersonController;
+use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.'], function() {
     Route::middleware('auth:sanctum')->group(function() {
         Route::resource('companies', CompanyController::class)->except(['create', 'edit']);
         Route::resource('people', PersonController::class)->except(['create', 'edit']);
+        Route::resource('roles', RoleController::class)->except(['create', 'edit']);
         Route::resource('users', UserController::class)->except(['create', 'edit']);
     });
 });

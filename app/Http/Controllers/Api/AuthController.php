@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\ResetAccessRequest;
 use App\Http\Requests\Auth\AuthenticateRequest;
+use App\Http\Resources\PersonResource;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response as HttpStatusCode;

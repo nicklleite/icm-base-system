@@ -13,14 +13,14 @@ class RolesFactory extends Factory
      * @return array
      */
     #[ArrayShape([
-        "title" => "string",
-        "description" => "string"
+        "description" => "string",
+        "title" => "string"
     ])]
     public function definition(): array
     {
         return [
-            "title" => $this->faker->unique()->jobTitle,
-            "description" => $this->faker->text(100)
+            "description" => $this->faker->text(100),
+            "title" => $this->faker->unique()->jobTitle
         ];
     }
 }

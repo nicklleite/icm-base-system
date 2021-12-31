@@ -1,20 +1,13 @@
 <?php
 
 use App\Models\User;
-use Database\Seeders\CompanySeeder;
-use Database\Seeders\PersonSeeder;
-use Database\Seeders\RoleSeeder;
-use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Symfony\Component\HttpFoundation\Response as HttpStatusCode;
 
 uses(RefreshDatabase::class);
 
 beforeEach(function () {
-    $this->seed(CompanySeeder::class);
-    $this->seed(PersonSeeder::class);
-    $this->seed(RoleSeeder::class);
-    $this->seed(UserSeeder::class);
+    $this->seed();
 
     performLogin();
 });
@@ -25,7 +18,7 @@ it('expects the user to be updated', function () {
         "email" => "nicklleite@gmail.com"
     ], ["Accept" => "application/json"]);
 
-    $request->assertStatus(HttpStatusCode::HTTP_OK)->assertJsonStructure(["data" => ["hash", "email", "username", "full_name"]]);
+    $request->assertStatus(HttpStatusCode::HTTP_OK)->assertJsonStructure(["data" => ["hash", "email", "username"]]);
 });
 
 it('expects an error on trying to update the user with duplicated information', function () {
