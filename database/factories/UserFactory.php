@@ -6,14 +6,14 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 use Illuminate\Support\Str;
-use Faker\Generator as Faker;
+use JetBrains\PhpStorm\ArrayShape;
 
 class UserFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
-     * @var string
+     * @var User
      */
     protected $model = User::class;
 
@@ -22,10 +22,16 @@ class UserFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    #[ArrayShape([
+        "hash" => "string",
+        "email" => "string",
+        "username" => "string",
+        "full_name" => "string"
+    ])]
+    public function definition(): array
     {
         return [
-            "hash" => Str::uuid(),
+            "hash" => (string)Str::uuid(),
             "email" => $this->faker->unique()->safeEmail,
             "username" => $this->faker->userName,
             "full_name" => $this->faker->name
