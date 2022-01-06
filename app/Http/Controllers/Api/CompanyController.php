@@ -61,7 +61,7 @@ class CompanyController extends Controller
      */
     public function update(UpdateCompanyRequest $request, Company $company)
     {
-        //
+        // Update
     }
 
     /**
@@ -72,6 +72,6 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        // Delete
     }
 }
