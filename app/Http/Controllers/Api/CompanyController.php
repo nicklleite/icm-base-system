@@ -14,12 +14,6 @@ use Symfony\Component\HttpFoundation\Response as HttpStatusCode;
 
 class CompanyController extends Controller
 {
-
-    public function __construct()
-    {
-
-    }
-
     /**
      * Display a listing of the resource.
      *
