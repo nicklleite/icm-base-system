@@ -33,11 +33,12 @@ class CompanyRepository
     }
 
     /**
-     * @param int $id
+     * @param Company $company
      * @return Company
      */
-    public function getById(int $id): Company
+    public function getById(Company $company): Company
     {
+        $id = $company->id ?? 0;
         return $this->company->findOrFail($id);
     }
 

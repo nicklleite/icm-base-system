@@ -45,11 +45,14 @@ class CompanyController extends Controller
      * Display the specified resource.
      *
      * @param Company $company
-     * @return Response
+     * @return JsonResponse
      */
-    public function show(Company $company)
+    public function show(Company $company): JsonResponse
     {
-        //
+        $service = resolve(CompanyService::class);
+        $company = $service->get($company);
+
+        return (new CompanyResource($company))->response()->setStatusCode(HttpStatusCode::HTTP_OK);
     }
 
     /**

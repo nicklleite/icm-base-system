@@ -29,10 +29,10 @@ class CompanyService
     }
 
     /**
-     * @param int $company
+     * @param Company $company
      * @return Company
      */
-    public function get(int $company): Company
+    public function get(Company $company): Company
     {
         return $this->companyRepository->getById($company);
     }
