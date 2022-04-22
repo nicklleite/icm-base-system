@@ -14,7 +14,7 @@ class PersonSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         DB::table('people')->insert([
             "id" => 1,
