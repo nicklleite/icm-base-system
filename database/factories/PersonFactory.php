@@ -21,23 +21,30 @@ class PersonFactory extends Factory
      *
      * @return array
      */
+
     #[ArrayShape([
+        'company_id' => "int",
+        'hash' => "string",
         'full_name' => "string",
         'social_name' => "string",
         'birthday' => "string",
-        'is_pwd' => "bool",
+        'birth_city' => "string",
+        'birth_state' => "mixed",
         'birth_country' => "string",
-        'birth_city' => "string"
+        'is_pwd' => "bool"
     ])]
     public function definition(): array
     {
         return [
+            'company_id' => $this->faker->numberBetween(1,50),
+            'hash' => $this->faker->uuid(),
             'full_name' => $this->faker->name(),
             'social_name' => $this->faker->name(),
             'birthday' => $this->faker->date(),
-            'is_pwd' => $this->faker->boolean(),
+            'birth_city' => $this->faker->city(),
+            'birth_state' => $this->faker->state(),
             'birth_country' => $this->faker->country(),
-            'birth_city' => $this->faker->city()
+            'is_pwd' => $this->faker->boolean(),
         ];
     }
 }

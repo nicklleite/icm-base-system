@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Company;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -13,14 +15,18 @@ class CompanySeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         DB::table('companies')->insert([
             "id" => 1,
             "hash" => (string) Str::uuid(),
             "company_name" => "Razão Social da Empresa",
             "trading_name" => "Nome Fantasia da Empresa",
-            "registered_number" => "11.111.111/0001-11"
+            "registered_number" => "11111111000111",
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now(),
         ]);
+
+        Company::factory()->count(49)->create();
     }
 }

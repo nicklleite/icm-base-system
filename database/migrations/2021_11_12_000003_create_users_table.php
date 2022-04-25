@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Person;
+use App\Models\Role;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,12 +13,12 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('person_id')->constrained('people');
-            $table->foreignId('role_id')->constrained('roles');
+            $table->foreignIdFor(Person::class);
+            $table->foreignIdFor(Role::class);
 
             $table->string('hash')->unique()->nullable(false);
             $table->string('email')->unique()->nullable(false);
@@ -34,7 +36,7 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('users');
     }
