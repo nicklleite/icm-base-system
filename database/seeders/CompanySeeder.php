@@ -27,6 +27,6 @@ class CompanySeeder extends Seeder
             "updated_at" => Carbon::now(),
         ]);
 
-        Company::factory()->count(50)->create();
+        Company::factory()->count(49)->create();
     }
 }

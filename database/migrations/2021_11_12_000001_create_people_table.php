@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Company;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,9 +16,9 @@ class CreatePeopleTable extends Migration
     {
         Schema::create('people', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignIdFor(Company::class);
 
             $table->string('hash')->unique()->nullable(false);
-            $table->foreignId('company_id')->constrained('companies');
 
             $table->string('full_name')->nullable(false);
             $table->string('social_name')->nullable(false);

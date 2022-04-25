@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\UserDocument;
 use Illuminate\Database\Seeder;
 
 class UserDocumentSeeder extends Seeder
@@ -11,8 +12,8 @@ class UserDocumentSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        //
+        UserDocument::factory()->count(50)->create();
     }
 }

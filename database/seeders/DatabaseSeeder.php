@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             PersonSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
+            UserDocumentSeeder::class
         ]);
     }
 }
