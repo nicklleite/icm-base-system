@@ -21,7 +21,7 @@ class CreateCompaniesTable extends Migration
             $table->string('registered_number')->nullable(false);
 
             $table->timestamps();
-            $table->softDeletes($column = 'deleted_at');
+            $table->softDeletes();
         });
     }
 

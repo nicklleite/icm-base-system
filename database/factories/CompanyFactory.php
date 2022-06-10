@@ -27,7 +27,7 @@ class CompanyFactory extends Factory
             "hash" => (string)Str::uuid(),
             "company_name" => $this->faker->company,
             "trading_name" => $this->faker->company,
-            "registered_number" => $this->faker->cnpj(false),
+            "registered_number" => $this->faker->unique()->cnpj(false),
         ];
     }
 }
