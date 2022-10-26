@@ -4,6 +4,7 @@
 /public/storage
 /storage/*.key
 /vendor
+/docker-compose
 .env
 .env.testing
 .phpunit.result.cache
