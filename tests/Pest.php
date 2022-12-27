@@ -9,7 +9,7 @@
 | case class. By default, that class is "PHPUnit\Framework\TestCase". Of course, you may
 | need to change it using the "uses()" function to bind a different classes or traits.
 |
-*/
+ */
 
 use Illuminate\Testing\TestResponse;
 
@@ -24,7 +24,7 @@ uses(Tests\TestCase::class)->in('Feature');
 | "expect()" function gives you access to a set of "expectations" methods that you can use
 | to assert different things. Of course, you may extend the Expectation API at any time.
 |
-*/
+ */
 
 expect()->extend('toBeOne', function () {
     return $this->toBe(1);
@@ -39,7 +39,7 @@ expect()->extend('toBeOne', function () {
 | project that you don't want to repeat in every file. Here you can also expose helpers as
 | global functions to help you to reduce the number of lines of code in your test files.
 |
-*/
+ */
 
 /**
  * Performs a login with a test user
@@ -52,6 +52,6 @@ function performLogin(string $email = "root@localhost", string $password = "1020
 {
     return test()->post(route('api.login.authenticate'), [
         "email" => $email,
-        "password" => $password
+        "password" => $password,
     ], ['Accept' => "application/json"]);
 }
