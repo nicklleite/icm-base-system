@@ -30,7 +30,7 @@ class CreateUserDocumentsTable extends Migration
             $table->tinyInteger("status")->default(1)->comment("1 - 'Sob Análise'; 2 - 'Aprovado'; 3 - 'Rejeitado'");
 
             $table->timestamps();
-            $table->softDeletes($column = 'deleted_at');
+            $table->softDeletes();
         });
     }
 

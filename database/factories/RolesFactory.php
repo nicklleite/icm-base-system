@@ -28,8 +28,8 @@ class RolesFactory extends Factory
     public function definition(): array
     {
         return [
+            "title" => $this->faker->jobTitle,
             "description" => $this->faker->text(100),
-            "title" => $this->faker->unique()->jobTitle
         ];
     }
 }

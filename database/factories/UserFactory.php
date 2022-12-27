@@ -36,7 +36,7 @@ class UserFactory extends Factory
         return [
             "person_id" => $this->faker->numberBetween(1,50),
             "role_id" => $this->faker->numberBetween(1,2),
-            "hash" => (string)Str::uuid(),
+            "hash" => (string) Str::uuid(),
             "email" => $this->faker->unique()->safeEmail,
             "username" => $this->faker->userName,
             "password" => Hash::make($this->faker->password)

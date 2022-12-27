@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\ResetAccessRequest;
 use App\Http\Requests\Auth\AuthenticateRequest;
-use App\Http\Resources\PersonResource;
+use App\Http\Requests\Auth\ResetAccessRequest;
 use App\Http\Resources\UserResource;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response as HttpStatusCode;
-use Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller
 {
@@ -17,7 +16,7 @@ class AuthController extends Controller
     {
         if (!Auth::attempt($request->only('email', 'password'))) {
             return response()->json([
-                "message" => "Invalid Credentials!"
+                "message" => "Invalid Credentials!",
             ], HttpStatusCode::HTTP_UNAUTHORIZED);
         }
 

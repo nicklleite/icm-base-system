@@ -34,7 +34,7 @@ class CreatePeopleTable extends Migration
             // Contacts will be another table
 
             $table->timestamps();
-            $table->softDeletes($column = 'deleted_at');
+            $table->softDeletes();
         });
     }
 

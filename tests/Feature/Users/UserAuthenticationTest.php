@@ -14,12 +14,12 @@ it('authenticate a user successfully', function () {
     $login->assertStatus(HttpStatusCode::HTTP_OK);
 });
 
-it('tests the form validation of login: blank fields', function() {
+it('tests the form validation of login: blank fields', function () {
     $login = performLogin("", "");
     $login->assertStatus(HttpStatusCode::HTTP_UNPROCESSABLE_ENTITY)->assertJsonStructure(["errors" => ["email", "password"]]);
 });
 
-it('tests the form validation of login: invalid password', function() {
+it('tests the form validation of login: invalid password', function () {
     $login = performLogin("admin@localhost", "asd");
     $login->assertStatus(HttpStatusCode::HTTP_UNPROCESSABLE_ENTITY)->assertJsonStructure(["errors" => ["password"]]);
 });
