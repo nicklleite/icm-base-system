@@ -23,9 +23,18 @@ class AuthenticateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'email' => "required|email",
-            "password" => "required|string|min:6|max:128",
-        ];
+        $validationRules = array(
+            "password" => "required|string|min:6|max:128"
+        );
+
+        $loginField = (empty($this->get('username')))? 'email' : 'username';
+
+        $validationRules[$loginField] = 'required|email';
+
+        if ($loginField === "username") {
+            $validationRules[$loginField] = 'required';
+        }
+
+        return $validationRules;
     }
 }

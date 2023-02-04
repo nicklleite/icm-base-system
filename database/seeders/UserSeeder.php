@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             "person_id" => 1,
             "role_id" => 1,
             "hash" => (string) Str::uuid(),
-            "email" => "root@localhost",
+            "email" => "root@localhost.com",
             "username" => "root",
             "password" => Hash::make('102040'),
             "created_at" => Carbon::now(),

@@ -14,7 +14,13 @@ class AuthController extends Controller
 {
     public function authenticate(AuthenticateRequest $request): JsonResponse
     {
-        if (!Auth::attempt($request->only('email', 'password'))) {
+        /**
+         * TODO: Validation of the incoming data on `login` field to be done by the frontend application.
+         */
+
+        $loginField = (empty($request->get('username')))? 'email' : 'username';
+
+        if (!Auth::attempt($request->only($loginField, 'password'))) {
             return response()->json([
                 "message" => "Invalid Credentials!",
             ], HttpStatusCode::HTTP_UNAUTHORIZED);
