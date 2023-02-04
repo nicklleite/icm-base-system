@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1a0ecdbf67a27ab96c74216dc5b24d34",
+    "content-hash": "57329e75c09b16873683e38b154de6b5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6321,6 +6321,71 @@
             "time": "2022-09-18T13:18:17+00:00"
         },
         {
+            "name": "pestphp/pest-plugin-laravel",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pestphp/pest-plugin-laravel.git",
+                "reference": "61935be0deae1732a3ead780fbd9277aa93e2f6d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pestphp/pest-plugin-laravel/zipball/61935be0deae1732a3ead780fbd9277aa93e2f6d",
+                "reference": "61935be0deae1732a3ead780fbd9277aa93e2f6d",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^7.30.6 || ^8.83.27 || ^9.47.0 || ^10.0.0",
+                "pestphp/pest": "^1.22.1",
+                "php": "^7.3 || ^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.20.0 || ^6.25.0 || ^7.7.0 || ^8.0",
+                "pestphp/pest-dev-tools": "^1.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Autoload.php"
+                ],
+                "psr-4": {
+                    "Pest\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "The Pest Laravel Plugin",
+            "keywords": [
+                "framework",
+                "laravel",
+                "pest",
+                "php",
+                "test",
+                "testing",
+                "unit"
+            ],
+            "support": {
+                "source": "https://github.com/pestphp/pest-plugin-laravel/tree/v1.4.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/paypalme/enunomaduro",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/nunomaduro",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/nunomaduro",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2023-01-13T16:54:07+00:00"
+        },
+        {
             "name": "phar-io/manifest",
             "version": "2.0.3",
             "source": {
@@ -6751,16 +6816,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.6.0",
+            "version": "9.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "70fc8be1d0b9fad56a199a4df5f9cfabfc246f84"
+                "reference": "9a52e8385f3e432d7e8ecab72c4d211a67223285"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/70fc8be1d0b9fad56a199a4df5f9cfabfc246f84",
-                "reference": "70fc8be1d0b9fad56a199a4df5f9cfabfc246f84",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9a52e8385f3e432d7e8ecab72c4d211a67223285",
+                "reference": "9a52e8385f3e432d7e8ecab72c4d211a67223285",
                 "shasum": ""
             },
             "require": {
@@ -6833,7 +6898,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.0"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.1"
             },
             "funding": [
                 {
@@ -6849,7 +6914,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-03T07:32:24+00:00"
+            "time": "2023-02-03T19:31:30+00:00"
         },
         {
             "name": "sebastian/cli-parser",
